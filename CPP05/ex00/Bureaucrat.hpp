@@ -6,7 +6,7 @@
 /*   By: miturk <miturk@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 10:18:01 by miturk            #+#    #+#             */
-/*   Updated: 2024/11/06 11:45:30 by miturk           ###   ########.fr       */
+/*   Updated: 2024/11/08 19:31:17 by miturk           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,11 @@ class Bureaucrat {
 		int getGrade() const;
 		void incrementGrade();
 		void decrementGrade();
-		class GradeTooHighException {
+		class GradeTooHighException : public std::exception {
 			public:
 				virtual const char *what() const throw();
 		};
-		class GradeTooLowException {
+		class GradeTooLowException : public std::exception {
 			public:
 				virtual const char *what() const throw();
 		};

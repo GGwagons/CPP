@@ -6,7 +6,7 @@
 /*   By: miturk <miturk@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 12:16:28 by miturk            #+#    #+#             */
-/*   Updated: 2024/11/08 18:04:09 by miturk           ###   ########.fr       */
+/*   Updated: 2024/11/08 19:23:13 by miturk           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,15 +39,15 @@ ShrubberyCreationForm &ShrubberyCreationForm::operator=(ShrubberyCreationForm co
 	return (*this);
 }
 
-void ShrubberyCreationForm::executeForm(Bureaucrat const &executor) const {
+void ShrubberyCreationForm::execute(Bureaucrat const &executor) const {
 	if (!getSigned()) {
 		throw FormNotSignedException();
 	}
 	if (executor.getGrade() > getGradeToExecute()) {
 		throw Bureaucrat::GradeTooLowException();
 	}
-	std::string const filename = _target + "_shrubbery";
-	std::ofstream file(filename);
+	std::string filename = _target + "_shrubbery";
+	std::ofstream file(filename.c_str());
 	if (!file) {
 		std::cerr << "Error: file not opened" << std::endl;
 	}

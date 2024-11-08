@@ -6,7 +6,7 @@
 /*   By: miturk <miturk@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 12:29:35 by miturk            #+#    #+#             */
-/*   Updated: 2024/11/08 17:14:28 by miturk           ###   ########.fr       */
+/*   Updated: 2024/11/08 19:26:03 by miturk           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,11 @@ class AForm {
 		int getGradeToExecute() const;
 		void beSigned(Bureaucrat const &buro);
 		virtual void execute(Bureaucrat const &executor) const = 0;
-		class FormNotSignedException {
+		class FormNotSignedException: public std::exception {
 			public:
 				virtual const char *what() const throw();
 		};
-		class FormSignedException {
+		class FormSignedException: public std::exception {
 			public:
 				virtual const char *what() const throw();
 		};

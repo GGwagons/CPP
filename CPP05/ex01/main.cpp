@@ -6,7 +6,7 @@
 /*   By: miturk <miturk@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 12:29:56 by miturk            #+#    #+#             */
-/*   Updated: 2024/11/08 11:40:45 by miturk           ###   ########.fr       */
+/*   Updated: 2024/11/08 19:30:15 by miturk           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,16 +27,7 @@ int main() {
 			std::cout << biroA << std::endl;
 			formA.execute(biroA);
 		}
-		catch(const Form::FormSignedException &exe) {
-				std::cerr << exe.what() << std::endl;
-		}
-		catch(const Form::FormNotSignedException &exe) {
-			std::cerr << exe.what() << std::endl;
-		}
-		catch(const Bureaucrat::GradeTooHighException &exe) {
-			std::cerr << exe.what() << std::endl;
-		}
-		catch(const Bureaucrat::GradeTooLowException &exe) {
+		catch (const std::exception &exe) {
 			std::cerr << exe.what() << std::endl;
 		}
 	}
@@ -57,10 +48,7 @@ int main() {
 			std::cout << biroB << std::endl;
 			formB.execute(biroB);
 		}
-		catch(const Bureaucrat::GradeTooHighException &exe) {
-			std::cerr << exe.what() << std::endl;
-		}
-		catch(const Bureaucrat::GradeTooLowException &exe) {
+		catch (const std::exception &exe) {
 			std::cerr << exe.what() << std::endl;
 		}
 	}

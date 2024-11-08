@@ -6,7 +6,7 @@
 /*   By: miturk <miturk@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 12:17:40 by miturk            #+#    #+#             */
-/*   Updated: 2024/11/08 17:08:36 by miturk           ###   ########.fr       */
+/*   Updated: 2024/11/08 19:13:11 by miturk           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ PresidentialPardonForm &PresidentialPardonForm::operator=(PresidentialPardonForm
 	return (*this);
 }
 
-void PresidentialPardonForm::executeForm(Bureaucrat const &executor) const {
+void PresidentialPardonForm::execute(Bureaucrat const &executor) const {
 	if (!getSigned()) {
 		throw FormNotSignedException();
 	}

@@ -6,7 +6,7 @@
 /*   By: miturk <miturk@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 12:17:37 by miturk            #+#    #+#             */
-/*   Updated: 2024/11/08 17:09:04 by miturk           ###   ########.fr       */
+/*   Updated: 2024/11/08 19:20:14 by miturk           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ class PresidentialPardonForm : public AForm {
 		PresidentialPardonForm(PresidentialPardonForm const &copy);
 		virtual ~PresidentialPardonForm();
 		PresidentialPardonForm &operator=(PresidentialPardonForm const &copy);
-		void executeForm(Bureaucrat const &executor) const;
+		void execute(Bureaucrat const &executor) const;
 };
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: miturk <miturk@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 10:18:01 by miturk            #+#    #+#             */
-/*   Updated: 2024/11/08 12:47:27 by miturk           ###   ########.fr       */
+/*   Updated: 2024/11/08 19:20:53 by miturk           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 #include <iostream>
 #include <string>
-#include "AForm.hpp"
 
 class AForm;
 
@@ -34,6 +33,7 @@ class Bureaucrat {
 		void incrementGrade();
 		void decrementGrade();
 		void signForm(AForm &form);
+		void executeForm(AForm const &form) const;
 		class GradeTooHighException {
 			public:
 				virtual const char *what() const throw();

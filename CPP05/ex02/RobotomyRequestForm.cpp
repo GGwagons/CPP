@@ -6,7 +6,7 @@
 /*   By: miturk <miturk@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 12:17:51 by miturk            #+#    #+#             */
-/*   Updated: 2024/11/08 17:08:45 by miturk           ###   ########.fr       */
+/*   Updated: 2024/11/08 19:24:51 by miturk           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,14 @@ RobotomyRequestForm &RobotomyRequestForm::operator=(RobotomyRequestForm const &c
 	return (*this);
 }
 
-void RobotomyRequestForm::executeForm(Bureaucrat const &executor) const {
+void RobotomyRequestForm::execute(Bureaucrat const &executor) const {
 	if (!getSigned()) {
 		throw FormNotSignedException();
 	}
 	if (executor.getGrade() > getGradeToExecute()) {
 		throw Bureaucrat::GradeTooLowException();
 	}
+	srand(time(0));
 	std::cout << "*drilling noises*" << std::endl;
 	if (rand() % 2) {
 		std::cout << _target << " has been robotomized successfully" << std::endl;

@@ -6,7 +6,7 @@
 /*   By: miturk <miturk@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 12:16:40 by miturk            #+#    #+#             */
-/*   Updated: 2024/11/08 17:15:55 by miturk           ###   ########.fr       */
+/*   Updated: 2024/11/08 19:13:41 by miturk           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,6 @@ class ShrubberyCreationForm : public AForm {
 		std::string getTarget() const;
 		virtual ~ShrubberyCreationForm();
 		ShrubberyCreationForm &operator=(ShrubberyCreationForm const &copy);
-		void executeForm(Bureaucrat const &executor) const;
+		void execute(Bureaucrat const &executor) const;
 };
 #endif

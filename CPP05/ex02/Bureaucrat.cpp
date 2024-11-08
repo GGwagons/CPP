@@ -6,11 +6,12 @@
 /*   By: miturk <miturk@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 10:19:17 by miturk            #+#    #+#             */
-/*   Updated: 2024/11/08 12:49:38 by miturk           ###   ########.fr       */
+/*   Updated: 2024/11/08 19:18:11 by miturk           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
+#include "AForm.hpp"
 
 Bureaucrat::Bureaucrat() : _name("SOMEONE"), _grade(150) {
 	std::cout << "Default constructor called" << std::endl;	
@@ -80,4 +81,12 @@ void Bureaucrat::signForm(AForm &form) {
 		return ;
 	}
 	std::cout << _name << " signs " << form.getName() << std::endl;
+}
+
+void Bureaucrat::executeForm(AForm const &form) const {
+	try {
+		form.execute(*this);
+	} catch (const std::exception &e) {
+		std::cerr << "Exception: " << e.what() << std::endl;
+	}
 }
