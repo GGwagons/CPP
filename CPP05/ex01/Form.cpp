@@ -6,7 +6,7 @@
 /*   By: miturk <miturk@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 12:29:32 by miturk            #+#    #+#             */
-/*   Updated: 2024/11/06 17:04:09 by miturk           ###   ########.fr       */
+/*   Updated: 2024/11/08 11:48:46 by miturk           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@ Form::Form() : _name("SOMEONE"), _signed(false), _gradeToSign(150), _gradeToExec
 Form::Form(std::string const &name, int gradeToSign, int gradeToExecute) : _name(name), _gradeToSign(gradeToSign), _gradeToExecute(gradeToExecute) {
 	std::cout << "Form constructor called" << std::endl;
 	if (_gradeToSign < 1 || _gradeToExecute < 1)
-		throw Form::GradeTooHighException();
+		throw Bureaucrat::GradeTooHighException();
 	if (_gradeToSign > 150 || _gradeToExecute > 150)
-		throw Form::GradeTooLowException();
+		throw Bureaucrat::GradeTooLowException();
 	if (_gradeToSign < _gradeToExecute)
-		throw Form::GradeTooLowException();
+		throw Bureaucrat::GradeTooLowException();
 	_signed = false;
 }
 
@@ -61,18 +61,19 @@ int Form::getGradeToExecute() const {
 
 void Form::beSigned(Bureaucrat const &buro) {
 	if (buro.getGrade() > _gradeToSign) {
-		throw Form::GradeTooLowException();
+		_signed = true;
 	}
-	_signed = true;
+	else {
+		throw Form::FormNotSignedException();
+	}
 }
 
 void Form::execute(Bureaucrat const &executor) const {
-	if (!_signed) {
-		throw Form::FormNotSignedException();
-	}
 	if (executor.getGrade() > _gradeToExecute) {
-		throw Form::GradeTooLowException();
+		std::cout << "Form " << _name << " cannot be executed by " << executor.getName() << ". Required grade " << getGradeToExecute() << std::endl;
 	}
+	else
+		std::cout << "Form " << _name << " executed by " << executor.getName() << std::endl;
 }
 
 const char *Form::FormNotSignedException::what() const throw() {
@@ -85,7 +86,11 @@ const char *Form::FormSignedException::what() const throw() {
 
 std::ostream &operator<<(std::ostream &out, Form const &form) {
 	out << "Form " << form.getName() << " is ";
-	(form.getSigned()) ? out << "signed" : out << "not signed";
-	out << " and requires grade " << form.getGradeToSign() << " to sign and grade " << form.getGradeToExecute() << " to execute";
+	if (form.getSigned()) {
+		out << "signed";
+	}
+	else {
+		out << "not signed" << " and requires grade " << form.getGradeToSign() << " to sign and grade " << form.getGradeToExecute() << " to execute";
+	}
 	return (out);
 }

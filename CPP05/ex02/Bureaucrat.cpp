@@ -6,7 +6,7 @@
 /*   By: miturk <miturk@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 10:19:17 by miturk            #+#    #+#             */
-/*   Updated: 2024/11/08 11:39:56 by miturk           ###   ########.fr       */
+/*   Updated: 2024/11/08 12:49:38 by miturk           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ std::ostream &operator<<(std::ostream &out, Bureaucrat const &biro) {
 	return (out);
 }
 
-void Bureaucrat::signForm(Form &form) {
+void Bureaucrat::signForm(AForm &form) {
 	if (form.getGradeToSign() < _grade) {
 		std::cout << _name << " cannot sign " << form.getName() << " because grade is too low" << std::endl;
 		return ;
