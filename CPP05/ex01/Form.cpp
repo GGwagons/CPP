@@ -6,7 +6,7 @@
 /*   By: miturk <miturk@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 12:29:32 by miturk            #+#    #+#             */
-/*   Updated: 2024/11/08 11:48:46 by miturk           ###   ########.fr       */
+/*   Updated: 2024/11/09 13:45:22 by miturk           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ Form::Form(std::string const &name, int gradeToSign, int gradeToExecute) : _name
 		throw Bureaucrat::GradeTooHighException();
 	if (_gradeToSign > 150 || _gradeToExecute > 150)
 		throw Bureaucrat::GradeTooLowException();
-	if (_gradeToSign < _gradeToExecute)
-		throw Bureaucrat::GradeTooLowException();
+	// if (_gradeToSign < _gradeToExecute)
+	// 	throw Bureaucrat::GradeTooLowException();
 	_signed = false;
 }
 
@@ -60,7 +60,7 @@ int Form::getGradeToExecute() const {
 }
 
 void Form::beSigned(Bureaucrat const &buro) {
-	if (buro.getGrade() > _gradeToSign) {
+	if (buro.getGrade() <= _gradeToSign) {
 		_signed = true;
 	}
 	else {
@@ -69,11 +69,13 @@ void Form::beSigned(Bureaucrat const &buro) {
 }
 
 void Form::execute(Bureaucrat const &executor) const {
-	if (executor.getGrade() > _gradeToExecute) {
-		std::cout << "Form " << _name << " cannot be executed by " << executor.getName() << ". Required grade " << getGradeToExecute() << std::endl;
+	if (!_signed) {
+		throw Form::FormNotSignedException();
 	}
-	else
-		std::cout << "Form " << _name << " executed by " << executor.getName() << std::endl;
+	if (executor.getGrade() > _gradeToExecute) {
+		throw Bureaucrat::GradeTooLowException();
+	}
+	std::cout << "Form " << _name << " executed by " << executor.getName() << std::endl;
 }
 
 const char *Form::FormNotSignedException::what() const throw() {

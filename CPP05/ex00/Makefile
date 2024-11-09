@@ -6,11 +6,11 @@
 #    By: miturk <miturk@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/06 10:12:08 by miturk            #+#    #+#              #
-#    Updated: 2024/11/06 10:26:40 by miturk           ###   ########.fr        #
+#    Updated: 2024/11/09 13:33:08 by miturk           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = ex00
+NAME = Bureaucrat
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 SRCS = main.cpp\

@@ -6,7 +6,7 @@
 /*   By: miturk <miturk@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 10:19:17 by miturk            #+#    #+#             */
-/*   Updated: 2024/11/08 11:39:56 by miturk           ###   ########.fr       */
+/*   Updated: 2024/11/09 16:10:18 by miturk           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,15 +50,19 @@ int Bureaucrat::getGrade() const {
 }
 
 void Bureaucrat::incrementGrade() {
-	if (_grade - 1 < 1)
-		throw Bureaucrat::GradeTooHighException();
+	if (_grade - 1 < 1) {
+		throw Bureaucrat::GradeTooHighException();	
+	}
 	_grade -= 1;
+	std::cout << _name << "Grade incremented" << std::endl;
 }
 
 void Bureaucrat::decrementGrade() {
-	if (_grade + 1 > 150)
+	if (_grade + 1 > 150) {
 		throw Bureaucrat::GradeTooLowException();
+	}
 	_grade += 1;
+	std::cout << _name << "Grade decremented" << std::endl;
 }
 
 const char *Bureaucrat::GradeTooHighException::what() const throw() {
@@ -76,8 +80,7 @@ std::ostream &operator<<(std::ostream &out, Bureaucrat const &biro) {
 
 void Bureaucrat::signForm(Form &form) {
 	if (form.getGradeToSign() < _grade) {
-		std::cout << _name << " cannot sign " << form.getName() << " because grade is too low" << std::endl;
-		return ;
+		throw GradeTooLowException();
 	}
-	std::cout << _name << " signs " << form.getName() << std::endl;
+	std::cout << _name << " signed " << form.getName() << std::endl;
 }

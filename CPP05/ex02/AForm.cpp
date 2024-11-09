@@ -60,7 +60,7 @@ int AForm::getGradeToExecute() const {
 }
 
 void AForm::beSigned(Bureaucrat const &buro) {
-	if (buro.getGrade() > _gradeToSign) {
+	if (buro.getGrade() <= _gradeToSign) {
 		_signed = true;
 	}
 	else {
@@ -69,6 +69,9 @@ void AForm::beSigned(Bureaucrat const &buro) {
 }
 
 void AForm::execute(Bureaucrat const &executor) const {
+	if (!_signed) {
+		throw AForm::FormNotSignedException();
+	}
 	if (executor.getGrade() > _gradeToExecute) {
 		std::cout << "AForm " << _name << " cannot be executed by " << executor.getName() << ". Required grade " << getGradeToExecute() << std::endl;
 	}
@@ -90,7 +93,7 @@ std::ostream &operator<<(std::ostream &out, AForm const &Aform) {
 		out << "signed";
 	}
 	else {
-		out << "not signed" << " and requires grade " << Aform.getGradeToSign() << " to sign and grade " << Aform.getGradeToExecute() << " to execute";
+		out << "not signed. " << Aform.getName() <<" form requires grade " << Aform.getGradeToSign() << " to sign and grade " << Aform.getGradeToExecute() << " to execute";
 	}
 	return (out);
 }

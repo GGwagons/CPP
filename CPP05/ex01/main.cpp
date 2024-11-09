@@ -6,7 +6,7 @@
 /*   By: miturk <miturk@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 12:29:56 by miturk            #+#    #+#             */
-/*   Updated: 2024/11/08 19:30:15 by miturk           ###   ########.fr       */
+/*   Updated: 2024/11/09 11:05:01 by miturk           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,14 @@
 int main() {
 	try {
 		try {
-			Bureaucrat biroA("BiroA", 51);
+			Bureaucrat biroA("BiroA", 50);
 			Form formA("FormA", 50, 49);
 			std::cout << biroA << std::endl;
 			std::cout << formA << std::endl;
+			biroA.incrementGrade();
 			formA.beSigned(biroA);
 			biroA.signForm(formA);
 			formA.execute(biroA);
-			biroA.incrementGrade();
 			std::cout << biroA << std::endl;
 			formA.execute(biroA);
 		}

@@ -6,7 +6,7 @@
 /*   By: miturk <miturk@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 12:16:40 by miturk            #+#    #+#             */
-/*   Updated: 2024/11/08 19:13:41 by miturk           ###   ########.fr       */
+/*   Updated: 2024/11/09 10:50:37 by miturk           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #define SHRUBBERYCREATIONFORM_HPP
 
 #include "AForm.hpp"
+#include <iostream>
 
 class ShrubberyCreationForm : public AForm {
 	private:

@@ -6,7 +6,7 @@
 /*   By: miturk <miturk@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 10:19:17 by miturk            #+#    #+#             */
-/*   Updated: 2024/11/08 19:18:11 by miturk           ###   ########.fr       */
+/*   Updated: 2024/11/09 13:50:17 by miturk           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "AForm.hpp"
 
 Bureaucrat::Bureaucrat() : _name("SOMEONE"), _grade(150) {
-	std::cout << "Default constructor called" << std::endl;	
+	std::cout << "Default constructor called" << std::endl;
 }
 
 Bureaucrat:: Bureaucrat(std::string const name, int grade) : _name(name), _grade(grade) {
@@ -80,13 +80,15 @@ void Bureaucrat::signForm(AForm &form) {
 		std::cout << _name << " cannot sign " << form.getName() << " because grade is too low" << std::endl;
 		return ;
 	}
-	std::cout << _name << " signs " << form.getName() << std::endl;
+	std::cout << _name << " signed " << form.getName() << std::endl;
 }
 
-void Bureaucrat::executeForm(AForm const &form) const {
-	try {
-		form.execute(*this);
-	} catch (const std::exception &e) {
-		std::cerr << "Exception: " << e.what() << std::endl;
+void Bureaucrat::executeForm(AForm const &Aform) const {
+	if (!Aform.getSigned()) {
+		throw AForm::FormNotSignedException();
 	}
+	if (Aform.getGradeToExecute() < _grade) {
+		throw Bureaucrat::GradeTooLowException();
+	}
+	std::cout << _name << " executed " << Aform.getName() << std::endl;
 }

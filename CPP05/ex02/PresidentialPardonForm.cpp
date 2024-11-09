@@ -6,7 +6,7 @@
 /*   By: miturk <miturk@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 12:17:40 by miturk            #+#    #+#             */
-/*   Updated: 2024/11/08 19:13:11 by miturk           ###   ########.fr       */
+/*   Updated: 2024/11/09 13:18:44 by miturk           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,5 @@ void PresidentialPardonForm::execute(Bureaucrat const &executor) const {
 	if (executor.getGrade() > getGradeToExecute()) {
 		throw Bureaucrat::GradeTooLowException();
 	}
-	std::cout << _target << " has been pardoned by Zafod Beeblebrox" << std::endl;
+	std::cout << _target << " has been pardoned by Zaphod Beeblebrox" << std::endl;
 }

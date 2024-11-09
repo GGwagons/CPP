@@ -6,13 +6,13 @@
 /*   By: miturk <miturk@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 10:19:17 by miturk            #+#    #+#             */
-/*   Updated: 2024/11/06 16:55:10 by miturk           ###   ########.fr       */
+/*   Updated: 2024/11/09 10:55:18 by miturk           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
 
-Bureaucrat::Bureaucrat() : _name("SOMEONE"), _grade(150) {
+Bureaucrat::Bureaucrat() : _name("SOMEONE"), _grade(1) {
 	std::cout << "Default constructor called" << std::endl;
 	
 }
