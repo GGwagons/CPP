@@ -6,12 +6,11 @@
 /*   By: miturk <miturk@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 12:16:28 by miturk            #+#    #+#             */
-/*   Updated: 2024/11/09 12:01:29 by miturk           ###   ########.fr       */
+/*   Updated: 2024/11/09 18:53:31 by miturk           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ShrubberyCreationForm.hpp"
-#include <fstream>
 
 ShrubberyCreationForm::ShrubberyCreationForm() : AForm("SHRUB", 147, 137) {
 	std::cout << "ShrubberyCreationForm default constructor called" << std::endl;
@@ -69,24 +68,3 @@ void ShrubberyCreationForm::execute(Bureaucrat const &executor) const {
 std::string ShrubberyCreationForm::getTarget() const {
 	return (_target);
 }
-
-// std::ofstream &operator<<(std::ofstream &file, ShrubberyCreationForm const &forma) {
-// 	std::string const filename = forma.getTarget() + "_shrubbery";
-// 	if (!file) {
-// 		std::cerr << "Error: file not opened" << std::endl;
-// 		return (file);
-// 	}
-// 	file << "     ~_--_~" << std::endl;
-// 	file << "  ~/~ ~  ~ ~\\" << std::endl;
-// 	file << "~/~~    ~    ~~\\" << std::endl;
-// 	file << "{   ~      ~    }" << std::endl;
-// 	file << " {   ~  ~      }" << std::endl;
-// 	file << "  {\\    ~  //}" << std::endl;
-// 	file << "  ~ \\     // ~" << std::endl;
-// 	file << "- -  \\| |//  _- _" << std::endl;
-// 	file << "  -    | |  - " << std::endl;
-// 	file << " _ -  / . \\ - _" << std::endl;
-// 	file << "     / /\\  \\" << std::endl;
-// 	file.close();
-// 	return (file);
-// }

@@ -6,7 +6,7 @@
 /*   By: miturk <miturk@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 10:19:17 by miturk            #+#    #+#             */
-/*   Updated: 2024/11/09 16:10:18 by miturk           ###   ########.fr       */
+/*   Updated: 2024/11/09 18:45:51 by miturk           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ Bureaucrat::Bureaucrat() : _name("SOMEONE"), _grade(150) {
 	std::cout << "Default constructor called" << std::endl;	
 }
 
-Bureaucrat:: Bureaucrat(std::string const name, int grade) : _name(name), _grade(grade) {
+Bureaucrat:: Bureaucrat(std::string const &name, int grade) : _name(name), _grade(grade) {
 	std::cout << "Constructor with parameters called" << std::endl;
 	if (_grade < 1)
 		throw Bureaucrat::GradeTooHighException();
@@ -78,9 +78,11 @@ std::ostream &operator<<(std::ostream &out, Bureaucrat const &biro) {
 	return (out);
 }
 
-void Bureaucrat::signForm(Form &form) {
-	if (form.getGradeToSign() < _grade) {
-		throw GradeTooLowException();
+void Bureaucrat::signForm(Form &form) const {
+	try {
+		form.beSigned(*this);
 	}
-	std::cout << _name << " signed " << form.getName() << std::endl;
+	catch (std::exception &exe) {
+		std::cerr << exe.what() << std::endl;
+	}
 }

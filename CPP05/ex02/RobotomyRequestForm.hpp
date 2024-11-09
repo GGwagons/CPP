@@ -6,7 +6,7 @@
 /*   By: miturk <miturk@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 12:17:49 by miturk            #+#    #+#             */
-/*   Updated: 2024/11/08 19:13:41 by miturk           ###   ########.fr       */
+/*   Updated: 2024/11/09 18:53:43 by miturk           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 #define ROBOTOMYREQUESTFORM_HPP
 
 #include "AForm.hpp"
+#include <cstdlib>
+#include <ctime>
 
 class RobotomyRequestForm : public AForm {
 	private:

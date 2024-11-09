@@ -6,7 +6,7 @@
 /*   By: miturk <miturk@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 12:29:32 by miturk            #+#    #+#             */
-/*   Updated: 2024/11/09 13:45:22 by miturk           ###   ########.fr       */
+/*   Updated: 2024/11/09 18:45:29 by miturk           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,9 @@ Form::Form() : _name("SOMEONE"), _signed(false), _gradeToSign(150), _gradeToExec
 Form::Form(std::string const &name, int gradeToSign, int gradeToExecute) : _name(name), _gradeToSign(gradeToSign), _gradeToExecute(gradeToExecute) {
 	std::cout << "Form constructor called" << std::endl;
 	if (_gradeToSign < 1 || _gradeToExecute < 1)
-		throw Bureaucrat::GradeTooHighException();
+		throw Form::GradeTooHighException();
 	if (_gradeToSign > 150 || _gradeToExecute > 150)
-		throw Bureaucrat::GradeTooLowException();
-	// if (_gradeToSign < _gradeToExecute)
-	// 	throw Bureaucrat::GradeTooLowException();
+		throw Form::GradeTooLowException();
 	_signed = false;
 }
 
@@ -60,7 +58,11 @@ int Form::getGradeToExecute() const {
 }
 
 void Form::beSigned(Bureaucrat const &buro) {
+	if (_signed) {
+		throw Form::FormSignedException();
+	}
 	if (buro.getGrade() <= _gradeToSign) {
+		std::cout << buro.getName() << " signed " << _name << std::endl;
 		_signed = true;
 	}
 	else {
@@ -76,6 +78,14 @@ void Form::execute(Bureaucrat const &executor) const {
 		throw Bureaucrat::GradeTooLowException();
 	}
 	std::cout << "Form " << _name << " executed by " << executor.getName() << std::endl;
+}
+
+const char *Form::GradeTooHighException::what() const throw() {
+	return ("Grade is too high");
+}
+
+const char *Form::GradeTooLowException::what() const throw() {
+	return ("Grade is too low");
 }
 
 const char *Form::FormNotSignedException::what() const throw() {

@@ -17,11 +17,8 @@ int main() {
 		Bureaucrat b1("b1", 5);
 		std::cout << b1 << std::endl;
 	}
-	catch (const Bureaucrat::GradeTooLowException &exe) {
-	std::cerr << "Exception caught: " << exe.what() << std::endl;
-	}
-	catch (const Bureaucrat::GradeTooHighException &exe) {
-	std::cerr << "Exception caught: " << exe.what() << std::endl;
+	catch (const std::exception &exe) {
+		std::cerr << "Exception caught: " << exe.what() << std::endl;
 	}
 	// This will throw an exception
 	std::cout << std::endl;
@@ -32,10 +29,7 @@ int main() {
 		b2.decrementGrade();
 		std::cout << "After increment: " << b2 << std::endl;
 	}
-	catch (const Bureaucrat::GradeTooLowException &exe) {
-		std::cerr << "Exception caught: " << exe.what() << std::endl;
-	}
-	catch (const Bureaucrat::GradeTooHighException &exe) {
+	catch (const std::exception &exe) {
 		std::cerr << "Exception caught: " << exe.what() << std::endl;
 	}
 	std::cout << std::endl;
@@ -46,10 +40,7 @@ int main() {
 		b3.incrementGrade();
 		std::cout << "After increment: " << b3 << std::endl;
 	}
-	catch (const Bureaucrat::GradeTooHighException &exe) {
-		std::cerr << "Exception caught: " << exe.what() << std::endl;
-	}
-	catch (const Bureaucrat::GradeTooLowException &exe) {
+	catch (const std::exception &exe) {
 		std::cerr << "Exception caught: " << exe.what() << std::endl;
 	}
 	std::cout << std::endl;
@@ -60,10 +51,7 @@ int main() {
 		b4.incrementGrade(); // This will throw an exception
 		std::cout << "After increment: " << b4 << std::endl;
 	}
-	catch (const Bureaucrat::GradeTooHighException &exe) {
-		std::cerr << "Exception caught: " << exe.what() << std::endl;
-	}
-	catch (const Bureaucrat::GradeTooLowException &exe) {
+	catch (const std::exception &exe) {
 		std::cerr << "Exception caught: " << exe.what() << std::endl;
 	}
 	std::cout << std::endl;
@@ -74,10 +62,7 @@ int main() {
 		b5.decrementGrade(); // This will throw an exception
 		std::cout << "After decrement: " << b5 << std::endl;
 	}
-	catch (const Bureaucrat::GradeTooHighException &exe) {
-		std::cerr << "Exception caught: " << exe.what() << std::endl;
-	}
-	catch (const Bureaucrat::GradeTooLowException &exe) {
+	catch (const std::exception &exe) {
 		std::cerr << "Exception caught: " << exe.what() << std::endl;
 	}
 	std::cout << std::endl;
@@ -88,16 +73,11 @@ int main() {
 		std::cout << "Before decrement: " << *b6 << std::endl;
 		b6->decrementGrade(); // This will throw an exception
 		std::cout << "After decrement: " << *b6 << std::endl;
-		delete b6;
 	}
-	catch (const Bureaucrat::GradeTooHighException &exe) {
+	catch (const std::exception &exe) {
 		std::cerr << "Exception caught: " << exe.what() << std::endl;
-		delete b6;
 	}
-	catch (const Bureaucrat::GradeTooLowException &exe) {
-		std::cerr << "Exception caught: " << exe.what() << std::endl;
-		delete b6;
-	}
+	delete b6;
 	std::cout << std::endl;
 	Bureaucrat *b7;
 	try {
@@ -106,16 +86,11 @@ int main() {
 		std::cout << "Before decrement: " << *b7 << std::endl;
 		b7->decrementGrade(); // This will throw an exception
 		std::cout << "After decrement: " << *b7 << std::endl;
-		delete b7;
 	}
-	catch (const Bureaucrat::GradeTooHighException &exe) {
+	catch (const std::exception &exe) {
 		std::cerr << "Exception caught: " << exe.what() << std::endl;
-		delete b7;
 	}
-	catch (const Bureaucrat::GradeTooLowException &exe) {
-		std::cerr << "Exception caught: " << exe.what() << std::endl;
-		delete b7;
-	}
+	delete b7;
 	std::cout << std::endl;
 	return 0;
 }

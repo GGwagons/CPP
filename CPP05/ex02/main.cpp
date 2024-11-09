@@ -6,7 +6,7 @@
 /*   By: miturk <miturk@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 12:29:56 by miturk            #+#    #+#             */
-/*   Updated: 2024/11/09 13:49:48 by miturk           ###   ########.fr       */
+/*   Updated: 2024/11/09 19:02:29 by miturk           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,12 @@ int main() {
 
         // Signing forms
         try {
-            shrubbery.beSigned(bob);
 			bob.signForm(shrubbery);
             // std::cout << "ShrubberyCreationForm signed successfully." << std::endl;
         } catch (const std::exception &e) {
             std::cerr << "Exception during ShrubberyCreationForm signing: " << e.what() << std::endl;
         }
         try {
-            robotomy.beSigned(bob);
 			bob.signForm(robotomy);
             // std::cout << "RobotomyRequestForm signed successfully." << std::endl;
         } catch (const std::exception &e) {
@@ -45,7 +43,6 @@ int main() {
         }
 
         try {
-            pardon.beSigned(bob);
 			bob.signForm(pardon);
             // std::cout << "PresidentialPardonForm signed successfully." << std::endl;
         } catch (const std::exception &e) {
@@ -59,7 +56,7 @@ int main() {
         // Executing forms
         try {
             bob.executeForm(shrubbery);
-			shrubbery.execute(bob);
+			// shrubbery.execute(bob);
             // std::cout << "ShrubberyCreationForm executed successfully." << std::endl;
         } catch (const std::exception &e) {
             std::cerr << "Exception during ShrubberyCreationForm execution: " << e.what() << std::endl;
@@ -67,7 +64,7 @@ int main() {
 
         try {
             bob.executeForm(robotomy);
-			robotomy.execute(bob);
+			// robotomy.execute(bob);
             // std::cout << "RobotomyRequestForm executed successfully." << std::endl;
         } catch (const std::exception &e) {
             std::cerr << "Exception during RobotomyRequestForm execution: " << e.what() << std::endl;
@@ -75,7 +72,7 @@ int main() {
 
         try {
             bob.executeForm(pardon);
-			pardon.execute(bob);
+			// pardon.execute(bob);
             std::cout << "PresidentialPardonForm executed successfully." << std::endl;
         } catch (const std::exception &e) {
             std::cerr << "Exception during PresidentialPardonForm execution: " << e.what() << std::endl;

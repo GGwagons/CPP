@@ -6,7 +6,7 @@
 /*   By: miturk <miturk@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 10:18:01 by miturk            #+#    #+#             */
-/*   Updated: 2024/11/09 10:55:18 by miturk           ###   ########.fr       */
+/*   Updated: 2024/11/09 18:17:47 by miturk           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ class Bureaucrat {
 		int _grade;
 	public:
 		Bureaucrat();
-		Bureaucrat(std::string const name, int grade);
+		Bureaucrat(std::string const &name, int grade);
 		Bureaucrat(Bureaucrat const &copy);
 		~Bureaucrat();
 		Bureaucrat &operator=(Bureaucrat const &copy);

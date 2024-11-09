@@ -6,7 +6,7 @@
 /*   By: miturk <miturk@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 12:29:35 by miturk            #+#    #+#             */
-/*   Updated: 2024/11/08 19:29:05 by miturk           ###   ########.fr       */
+/*   Updated: 2024/11/09 18:30:35 by miturk           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,14 @@ class Form {
 		int getGradeToExecute() const;
 		void beSigned(Bureaucrat const &buro);
 		void execute(Bureaucrat const &executor) const;
+		class GradeTooHighException : public std::exception {
+			public:
+				virtual const char *what() const throw();
+		};
+		class GradeTooLowException : public std::exception {
+			public:
+				virtual const char *what() const throw();
+		};
 		class FormNotSignedException : public std::exception {
 			public:
 				virtual const char *what() const throw();

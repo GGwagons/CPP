@@ -6,7 +6,7 @@
 /*   By: miturk <miturk@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 10:18:01 by miturk            #+#    #+#             */
-/*   Updated: 2024/11/09 13:36:35 by miturk           ###   ########.fr       */
+/*   Updated: 2024/11/09 18:54:44 by miturk           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ class Bureaucrat {
 		int getGrade() const;
 		void incrementGrade();
 		void decrementGrade();
-		void signForm(AForm &form);
+		void signForm(AForm &form) const;
 		void executeForm(AForm const &form) const;
 		class GradeTooHighException : public std::exception {
 			public:
