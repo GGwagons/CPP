@@ -6,7 +6,7 @@
 /*   By: miturk <miturk@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 12:09:54 by miturk            #+#    #+#             */
-/*   Updated: 2024/11/10 12:12:44 by miturk           ###   ########.fr       */
+/*   Updated: 2024/11/10 13:21:45 by miturk           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,16 @@
 # include "ShrubberyCreationForm.hpp"
 
 class Intern {
-public:
-	Intern();
-	Intern(Intern const &copy);
-	~Intern();
-	Intern &operator=(Intern const &copy);
-	AForm *makeForm(std::string const &name, std::string const &target);
+	private:
+		static AForm *createRobotomyRequestForm(std::string const &target);
+		static AForm *createPresidentialPardonForm(std::string const &target);
+		static AForm *createShrubberyCreationForm(std::string const &target);
+	public:
+		Intern();
+		Intern(Intern const &copy);
+		~Intern();
+		Intern &operator=(Intern const &copy);
+		AForm *makeForm(std::string const &name, std::string const &target);
 };
 
 #endif
