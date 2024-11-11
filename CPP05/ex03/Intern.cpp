@@ -6,7 +6,7 @@
 /*   By: miturk <miturk@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 12:09:44 by miturk            #+#    #+#             */
-/*   Updated: 2024/11/11 12:07:58 by miturk           ###   ########.fr       */
+/*   Updated: 2024/11/11 13:34:54 by miturk           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,23 +32,6 @@ Intern &Intern::operator=(Intern const &copy) {
 	return (*this);
 }
 
-AForm *Intern::makeForm(std::string const &name, std::string const &target) {
-        FormType formTypes[] = {
-			{"robotomy request", &robotomyForm},
-			{"presidential pardon", &presidentialForm},
-			{"shrubbery creation", &shrubberyForm}
-        };
-		 for (size_t i = 0; i < sizeof(formTypes) / sizeof(FormType); ++i) {
-            if (formTypes[i].formName == name) {
-                std::cout << "Intern creates " << name << std::endl;
-                return formTypes[i].create(target); // Call the creation function
-            }
-        }
-
-        std::cout << "Intern can't create " << name << std::endl;
-        return NULL;
-}
-
 AForm *Intern::robotomyForm(std::string const &target) {
 	return new RobotomyRequestForm(target);
 }
@@ -59,4 +42,20 @@ AForm *Intern::presidentialForm(std::string const &target) {
 
 AForm *Intern::shrubberyForm(std::string const &target) {
 	return new ShrubberyCreationForm(target);
+}
+
+AForm *Intern::makeForm(std::string const &name, std::string const &target) {
+        FormType formTypes[] = {
+			{"robotomy request", &robotomyForm},
+			{"presidential pardon", &presidentialForm},
+			{"shrubbery creation", &shrubberyForm}
+        };
+		 for (size_t i = 0; i < sizeof(formTypes) / sizeof(FormType); ++i) {
+            if (formTypes[i].formName == name) {
+                std::cout << "Intern creates " << name << std::endl;
+                return formTypes[i].create(target);
+            }
+        }
+        std::cout << "Intern can't create " << name << std::endl;
+        return NULL;
 }

@@ -6,7 +6,7 @@
 /*   By: miturk <miturk@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 12:29:56 by miturk            #+#    #+#             */
-/*   Updated: 2024/11/11 12:54:06 by miturk           ###   ########.fr       */
+/*   Updated: 2024/11/11 13:33:39 by miturk           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ int main() {
 		catch (std::exception &e) {
 			std::cerr << "Exception: " << e.what() << std::endl;
 		}
+		delete form;
 	}
 	catch (std::exception &e) {
 		std::cerr << "Exception: " << e.what() << std::endl;
