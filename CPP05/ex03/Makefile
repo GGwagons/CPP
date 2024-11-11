@@ -6,11 +6,11 @@
 #    By: miturk <miturk@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/06 10:12:08 by miturk            #+#    #+#              #
-#    Updated: 2024/11/10 12:14:15 by miturk           ###   ########.fr        #
+#    Updated: 2024/11/11 12:52:17 by miturk           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = AForm
+NAME = Intern
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 SRCS = main.cpp \

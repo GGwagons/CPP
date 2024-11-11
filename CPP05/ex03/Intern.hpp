@@ -6,7 +6,7 @@
 /*   By: miturk <miturk@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 12:09:54 by miturk            #+#    #+#             */
-/*   Updated: 2024/11/10 13:21:45 by miturk           ###   ########.fr       */
+/*   Updated: 2024/11/11 12:08:25 by miturk           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,16 @@
 # include "PresidentialPardonForm.hpp"
 # include "ShrubberyCreationForm.hpp"
 
+struct FormType {
+	std::string formName;
+	AForm* (*create)(std::string const &target);
+};
+
 class Intern {
 	private:
-		static AForm *createRobotomyRequestForm(std::string const &target);
-		static AForm *createPresidentialPardonForm(std::string const &target);
-		static AForm *createShrubberyCreationForm(std::string const &target);
+		static AForm *robotomyForm(std::string const &target);
+		static AForm *presidentialForm(std::string const &target);
+		static AForm *shrubberyForm(std::string const &target);
 	public:
 		Intern();
 		Intern(Intern const &copy);
