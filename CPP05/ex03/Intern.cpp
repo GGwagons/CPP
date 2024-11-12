@@ -6,7 +6,7 @@
 /*   By: miturk <miturk@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 12:09:44 by miturk            #+#    #+#             */
-/*   Updated: 2024/11/11 13:34:54 by miturk           ###   ########.fr       */
+/*   Updated: 2024/11/11 17:01:00 by miturk           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ AForm *Intern::makeForm(std::string const &name, std::string const &target) {
 			{"presidential pardon", &presidentialForm},
 			{"shrubbery creation", &shrubberyForm}
         };
-		 for (size_t i = 0; i < sizeof(formTypes) / sizeof(FormType); ++i) {
+		for (size_t i = 0; i < sizeof(formTypes) / sizeof(FormType); ++i) {
             if (formTypes[i].formName == name) {
                 std::cout << "Intern creates " << name << std::endl;
                 return formTypes[i].create(target);
