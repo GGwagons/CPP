@@ -6,7 +6,7 @@
 /*   By: miturk <miturk@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 13:44:02 by miturk            #+#    #+#             */
-/*   Updated: 2024/11/12 14:47:31 by miturk           ###   ########.fr       */
+/*   Updated: 2024/11/13 16:10:57 by miturk           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,20 +17,15 @@
 #include <string>
 #include <stdint.h>
 
-
 struct Data {
-	int _i;
-	std::string _s;
-	Data(int i, std::string s) : _i(i), _s(s) {}
+	int id;
+	std::string name;
 };
-
 class Serializer {
+	private:
 	public:
-		static uintptr_t serialize(Data* ptr);
-		static Data *deserialize(uintptr_t raw);
+	static uintptr_t serialize(Data *ptr);
+	static Data *deserialize(uintptr_t raw);
 };
-
-
-
 
 #endif
