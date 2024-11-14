@@ -6,7 +6,7 @@
 /*   By: miturk <miturk@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 11:18:34 by miturk            #+#    #+#             */
-/*   Updated: 2024/11/14 18:35:51 by miturk           ###   ########.fr       */
+/*   Updated: 2024/11/14 19:02:41 by miturk           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,33 @@ void ScalarConverter::toFloat(std::string &input) {
 }
 
 void ScalarConverter::toDouble(std::string &input) {
-	
-	std::cout << "double: ";
+	double res, res1, res2  = 0.0;
+	int x, i, j = 0;
+	int sign = 1;
+	if (input[0] == '-'){
+		sign = sign * -1;
+		x++;
+	}
+	for (; x < input.length(); x++) {
+		if (isdigit(input[x])) {
+			res1 = res1 * 10.0 + (input[x] - '0'); 
+		}
+		else
+			break;
+	}
+	if (input[x] == '.'){
+		x++;
+		for (; x < input.length() &&  isdigit(input[x]); x++) {
+			res2 = res2 * 10.0 + (input[x] - '0');
+			i++;
+		}
+	}
+	for (; j < i; j++) {
+		res2 /= 10.0;
+	}
+
+	res = (res1 + res2) * sign;
+	std::cout << "double: " << res << std::endl;
 }
 
 void ScalarConverter::convert(std::string &input) {
