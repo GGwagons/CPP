@@ -1,0 +1,42 @@
+static double	ft_deci(const char *s)
+{
+	double		res1;
+	double		res2;
+	int			i;
+	int			j;
+
+	res1 = 0.0;
+	res2 = 0.0;
+	i = 0;
+	j = 0;
+	while (*s >= '0' && *s <= '9')
+		res1 = res1 * 10.0 + (*s++ - '0');
+	if (*s++ == '.')
+	{
+		while (*s >= '0' && *s <= '9')
+		{
+			res2 = res2 * 10.0 + (*s++ - '0');
+			i++;
+		}
+	}
+	while (j++ < i)
+		res2 = res2 / 10.0;
+	return (res1 + res2);
+}
+
+double	ft_atof(const char *s)
+{
+	int			sign;
+	double		result;
+
+	result = 0.0;
+	sign = 1;
+	if (*s == '-' || *s == '+')
+	{
+		if (*s == '-')
+			sign = -1;
+		s++;
+	}
+	result = ft_deci(s);
+	return (result * sign);
+}

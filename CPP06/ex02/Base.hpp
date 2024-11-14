@@ -1,33 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Serializer.cpp                                     :+:      :+:    :+:   */
+/*   Base.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: miturk <miturk@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/12 13:43:49 by miturk            #+#    #+#             */
-/*   Updated: 2024/11/14 13:05:10 by miturk           ###   ########.fr       */
+/*   Created: 2024/11/14 12:31:09 by miturk            #+#    #+#             */
+/*   Updated: 2024/11/14 17:01:07 by miturk           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Serializer.hpp"
+#ifndef BASE_HPP
+#define BASE_HPP
 
-Serializer::Serializer() {}
+#include <ctime>
+#include <cstdlib>
+#include <iostream>
+#include <cassert>
+#include <unistd.h>
 
-Serializer::Serializer(const Serializer &copy) {
-	*this = copy;
-}
+class Base {
+	private:
+	public:
+	virtual ~Base();
+};
 
-Serializer::~Serializer() {}
 
-Serializer &Serializer::operator=(const Serializer &copy) {
-	return *this;
-}
-
-uintptr_t Serializer::serialize(Data *ptr) {
-	return reinterpret_cast<uintptr_t>(ptr);
-}
-
-Data *Serializer::deserialize(uintptr_t raw) {
-	return reinterpret_cast<Data *>(raw);
-}
+#endif

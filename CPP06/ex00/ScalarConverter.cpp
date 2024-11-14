@@ -6,7 +6,7 @@
 /*   By: miturk <miturk@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 11:18:34 by miturk            #+#    #+#             */
-/*   Updated: 2024/11/11 16:37:17 by miturk           ###   ########.fr       */
+/*   Updated: 2024/11/14 18:35:51 by miturk           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,17 @@ void ScalarConverter::toChar(std::string &input) {
 }
 
 void ScalarConverter::toInt(std::string &input) {
-	std::cout << "int: ";
+	int i = -1;
+	int res = 0;
+	int sign = 1;
+	if (i++, input[0] == '-') {
+		sign = sign * -1;
+	}
+	for (;i < input.length() && isdigit(input[i]); i++) {
+		res = res * 10 + input[i] - '0';
+	}
+	res = res * sign;
+	std::cout << "int: " << res << std::endl;
 }
 
 void ScalarConverter::toFloat(std::string &input) {
@@ -49,15 +59,16 @@ void ScalarConverter::toFloat(std::string &input) {
 }
 
 void ScalarConverter::toDouble(std::string &input) {
-	for (int i = 0; i < input.length(); i++) {
-		if (input[i] == '.')
-			std::cout << "double: ";
-	}
+	
 	std::cout << "double: ";
 }
 
 void ScalarConverter::convert(std::string &input) {
 	std::cout << "convert called" << std::endl;
+	for (int i = 0; i < input.length(); i++) {
+		if (input.find(".") && input[input.length()] == 'f') // this is still wrong...
+			ScalarConverter::toDouble(input);
+	}
 	ScalarConverter::toChar(input);
 	ScalarConverter::toInt(input);
 	ScalarConverter::toFloat(input);

@@ -6,7 +6,7 @@
 /*   By: miturk <miturk@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 11:18:36 by miturk            #+#    #+#             */
-/*   Updated: 2024/11/11 16:35:38 by miturk           ###   ########.fr       */
+/*   Updated: 2024/11/14 17:47:23 by miturk           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 #include <iostream>
 #include <string>
+#include <sstream>
 
 class ScalarConverter {
 	private:

@@ -6,7 +6,7 @@
 /*   By: miturk <miturk@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 13:44:02 by miturk            #+#    #+#             */
-/*   Updated: 2024/11/13 16:10:57 by miturk           ###   ########.fr       */
+/*   Updated: 2024/11/14 12:50:53 by miturk           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,17 @@
 struct Data {
 	int id;
 	std::string name;
+	unsigned int boo;
 };
 class Serializer {
 	private:
+		Serializer();
+		~Serializer();
+		Serializer(const Serializer &copy);
+		Serializer &operator=(const Serializer &assign);
 	public:
-	static uintptr_t serialize(Data *ptr);
-	static Data *deserialize(uintptr_t raw);
+		static uintptr_t serialize(Data *ptr);
+		static Data *deserialize(uintptr_t raw);
 };
 
 #endif
