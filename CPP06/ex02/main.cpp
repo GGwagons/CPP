@@ -6,7 +6,7 @@
 /*   By: miturk <miturk@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 11:13:44 by miturk            #+#    #+#             */
-/*   Updated: 2024/11/14 17:38:37 by miturk           ###   ########.fr       */
+/*   Updated: 2024/11/15 13:33:18 by miturk           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,19 +47,23 @@ void identify(Base &p) {
 	try {
 		refA = dynamic_cast<A &>(p);
 		std::cout << "It's reference to A" << std::endl;
+		return;
 	}
 	catch(const std::exception &e) {};
 	try{
 		refB = dynamic_cast<B &>(p);
 		std::cout << "It's reference to B" << std::endl;
+		return;
 	}
-	catch(const std::exception &e) {};
+	catch(...) {};
 	try {
 		refC = dynamic_cast<C &>(p);
 		std::cout << "It's reference to C" << std::endl;
+		return;
 	}
-	catch(const std::exception &e) {};
-	
+	catch(const std::exception &e) {
+		std::cout << "It's none of them" << std::endl;
+	};
 }
 
 int main() {
@@ -75,7 +79,9 @@ int main() {
 		identify(p);
 		identify(*p);
 		delete p;
-		sleep(1);
+		//sleep(1);
 	}
+	Base *nothing = NULL;
+	identify(*nothing);
 	return (0);
 }

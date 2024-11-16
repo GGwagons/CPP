@@ -6,7 +6,7 @@
 /*   By: miturk <miturk@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 13:43:49 by miturk            #+#    #+#             */
-/*   Updated: 2024/11/14 13:05:10 by miturk           ###   ########.fr       */
+/*   Updated: 2024/11/15 15:14:57 by miturk           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ Serializer::Serializer(const Serializer &copy) {
 Serializer::~Serializer() {}
 
 Serializer &Serializer::operator=(const Serializer &copy) {
+	if (this != &copy) {};
 	return *this;
 }
 
