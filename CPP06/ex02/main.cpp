@@ -6,7 +6,7 @@
 /*   By: miturk <miturk@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 11:13:44 by miturk            #+#    #+#             */
-/*   Updated: 2024/11/15 13:33:18 by miturk           ###   ########.fr       */
+/*   Updated: 2024/11/18 12:45:57 by miturk           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ Base *generate(void) {
 	}
 }
 
-void identify(Base* p) {
+void identify(Base *p) {
 	if (dynamic_cast<A *>(p))
 		std::cout << "It's pointer A" << std::endl;
 	else if (dynamic_cast<B *>(p))
@@ -79,7 +79,7 @@ int main() {
 		identify(p);
 		identify(*p);
 		delete p;
-		//sleep(1);
+		//sleep(1); //used for sleep to get random results from srand(time(0));
 	}
 	Base *nothing = NULL;
 	identify(*nothing);

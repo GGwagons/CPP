@@ -6,7 +6,7 @@
 /*   By: miturk <miturk@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 11:12:50 by miturk            #+#    #+#             */
-/*   Updated: 2024/11/16 20:40:31 by miturk           ###   ########.fr       */
+/*   Updated: 2024/11/17 14:33:34 by miturk           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int main(int argc, char **argv) {
 		std::cerr << "Empty input" << std::endl;
 		return (1);
 	}
-	if (input.empty() || input.find_first_of(".") != input.find_last_of(".")) {
+	if (input.empty()) {
 		std::cerr << "Invalid input" << std::endl;
 		return (1);
 	}

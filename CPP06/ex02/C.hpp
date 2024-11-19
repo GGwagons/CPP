@@ -6,7 +6,7 @@
 /*   By: miturk <miturk@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 13:08:59 by miturk            #+#    #+#             */
-/*   Updated: 2024/11/14 13:10:45 by miturk           ###   ########.fr       */
+/*   Updated: 2024/11/17 18:04:12 by miturk           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 
 #include "Base.hpp"
 
-class C : public Base {
-		
-};
+class C : public Base {};
 
 #endif

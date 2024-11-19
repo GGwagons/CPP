@@ -6,18 +6,27 @@
 /*   By: miturk <miturk@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 11:18:36 by miturk            #+#    #+#             */
-/*   Updated: 2024/11/16 18:43:42 by miturk           ###   ########.fr       */
+/*   Updated: 2024/11/18 12:48:07 by miturk           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SCALARCONVERTER_HPP
 #define SCALARCONVERTER_HPP
 
+
 #include <iostream>
 #include <string>
 #include <sstream>
 #include <iomanip>
-#include <limits>
+#include <climits>
+#include <cfloat>
+#include <cstdlib>
+
+#define INF "+inf"
+#define	NINF "-inf"
+#define NAN "nan"
+#define IM "impossible"
+#define N "Non displayable"
 
 class ScalarConverter {
 	private:
@@ -35,7 +44,6 @@ void toInt(const std::string &input);
 void toChar(const std::string &input);
 void toDouble(const std::string &input);
 void toFloat(const std::string &input);
-long long ft_atoi(const std::string &input);
 void isString(const std::string &input);
 
 #endif
