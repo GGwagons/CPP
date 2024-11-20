@@ -6,16 +6,14 @@
 /*   By: miturk <miturk@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 13:03:31 by miturk            #+#    #+#             */
-/*   Updated: 2024/11/18 13:56:57 by miturk           ###   ########.fr       */
+/*   Updated: 2024/11/20 14:51:17 by miturk           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # ifndef SWAPCOMP_HPP
 #define SWAPCOMP_HPP
 
-#include <iomanip>
 #include <iostream>
-#include <sstream>
 
 template <typename MAX>
 MAX max(MAX a, MAX b) {
@@ -30,7 +28,6 @@ MIN min(MIN a, MIN b) {
 		return (b);
 	}
 	return (a);
-	
 }
 
 template <typename SWAP>

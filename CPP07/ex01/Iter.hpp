@@ -6,32 +6,38 @@
 /*   By: miturk <miturk@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 14:01:55 by miturk            #+#    #+#             */
-/*   Updated: 2024/11/19 14:26:49 by miturk           ###   ########.fr       */
+/*   Updated: 2024/11/20 19:08:19 by miturk           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # ifndef ITER_HPP
 #define ITER_HPP
 
-#include <iomanip>
-#include <sstream>
-#include <string>
 #include <iostream>
-#include <cstdlib>
-
-template <typename I>
-void increment(I &i) {
-	size_t x = static_cast<size_t>(i);
-    x += 1;
-}
+#include <iomanip>
 
 template <typename T>
 void print(T &i){
-	std::cout << std::fixed << std::setprecision(1) <<  " [" << i << "]"; 
+	std::cout << std::fixed << std::setprecision(1) <<  " [" << i << "]" << std::endl; 
 }
 
 template <typename ITER, typename LEN>
-void iter(ITER *array, LEN len, void (*fun)(ITER &)) {
+void iter(ITER *array, LEN len, void (*fun)(const ITER &)) {
+	if (len <= 0) {
+		std::cout << "Array is empty" << std::endl;
+		return;
+	}
+	for (LEN i = 0; i < len; i++) {
+		fun(array[i]);
+	}
+}
+
+template <typename ITER, typename LEN, typename FUN>
+void iter(ITER *array, LEN len, FUN (*fun)(ITER &)) {
+	if (len <= 0) {
+		std::cout << "Array is empty" << std::endl;
+		return;
+	}
 	for (LEN i = 0; i < len; i++) {
 		fun(array[i]);
 	}
