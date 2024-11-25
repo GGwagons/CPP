@@ -3,14 +3,14 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: wagons <wagons@student.42.fr>              +#+  +:+       +#+         #
+#    By: miturk <miturk@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/23 16:34:44 by wagons            #+#    #+#              #
-#    Updated: 2024/11/23 16:35:03 by wagons           ###   ########.fr        #
+#    Updated: 2024/11/25 12:46:15 by miturk           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = span
+NAME = Span
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 SRCS =	main.cpp \

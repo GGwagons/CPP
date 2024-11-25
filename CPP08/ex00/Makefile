@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: wagons <wagons@student.42.fr>              +#+  +:+       +#+         #
+#    By: miturk <miturk@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/21 12:04:53 by wagons            #+#    #+#              #
-#    Updated: 2024/11/24 21:41:09 by wagons           ###   ########.fr        #
+#    Updated: 2024/11/25 12:41:44 by miturk           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,6 @@ NAME = easyFind
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 SRCS =	main.cpp \
-		EasyFind.cpp
 
 OBJS = $(SRCS:.cpp=.o)
 

@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   Span.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wagons <wagons@student.42.fr>              +#+  +:+       +#+        */
+/*   By: miturk <miturk@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 16:29:27 by wagons            #+#    #+#             */
-/*   Updated: 2024/11/24 22:32:36 by wagons           ###   ########.fr       */
+/*   Updated: 2024/11/25 13:04:51 by miturk           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SPAN_HPP
-#define SPAN_HPP
+#pragma once
 
 #include <iostream>
 #include <vector>
 #include <algorithm>
+#include <limits>
 
 class Span {
 	private:
@@ -57,5 +57,3 @@ class Span {
 				}
 		};
 };
-
-#endif

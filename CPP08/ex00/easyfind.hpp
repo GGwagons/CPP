@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   EasyFind.hpp                                       :+:      :+:    :+:   */
+/*   easyfind.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wagons <wagons@student.42.fr>              +#+  +:+       +#+        */
+/*   By: miturk <miturk@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 12:08:14 by wagons            #+#    #+#             */
-/*   Updated: 2024/11/24 21:38:51 by wagons           ###   ########.fr       */
+/*   Updated: 2024/11/25 17:11:53 by miturk           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include <vector>
 #include <algorithm>
 
+template <typename T>
 class NoFind : public std::exception {
 	public:
 		virtual const char *what() const throw() {
@@ -25,20 +26,11 @@ class NoFind : public std::exception {
 };
 
 template <typename T>
-typename T::iterator easyfind(T &con, int x) {
-	typename T::iterator t = find(con.begin(), con.end(), x);
-	if (t == con.end())
-		throw NoFind();
-	return t;
+typename T::iterator easyFind(T &con, int x) {
+	typename T::iterator it = find(con.begin(), con.end(), x);
+	if (it == con.end())
+		throw NoFind<T>();
+	return it;
 }
-
-class EasyFind {
-	private:
-		EasyFind();
-		EasyFind(const EasyFind &copy);
-		~EasyFind();
-		EasyFind &operator=(const EasyFind &copy);
-	public:
-};
 
 #endif

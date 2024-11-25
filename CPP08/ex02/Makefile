@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: wagons <wagons@student.42.fr>              +#+  +:+       +#+         #
+#    By: miturk <miturk@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/24 21:13:11 by wagons            #+#    #+#              #
-#    Updated: 2024/11/24 21:31:38 by wagons           ###   ########.fr        #
+#    Updated: 2024/11/25 13:45:15 by miturk           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,6 @@ NAME = abomination
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 SRCS =	main.cpp \
-		MutantStack.cpp
 
 OBJS = $(SRCS:.cpp=.o)
 

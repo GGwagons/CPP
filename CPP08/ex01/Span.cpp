@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   Span.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wagons <wagons@student.42.fr>              +#+  +:+       +#+        */
+/*   By: miturk <miturk@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 16:35:53 by wagons            #+#    #+#             */
-/*   Updated: 2024/11/24 22:15:27 by wagons           ###   ########.fr       */
+/*   Updated: 2024/11/25 13:04:30 by miturk           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Span.hpp"
-#include <stdexcept>
-#include <limits>
 
 Span::Span() : _max(0) {}
 
