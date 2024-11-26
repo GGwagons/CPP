@@ -6,7 +6,7 @@
 /*   By: miturk <miturk@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 21:28:43 by wagons            #+#    #+#             */
-/*   Updated: 2024/11/25 17:13:17 by miturk           ###   ########.fr       */
+/*   Updated: 2024/11/26 12:38:55 by miturk           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,9 @@ int main()
 	mstack.push(3);
 	mstack.push(5);
 	mstack.push(737);
-	//[...]
 	mstack.push(0);
-	MutantStack<int>::iter it = mstack.begin();
-	MutantStack<int>::iter ite = mstack.end();
+	MutantStack<int>::iterator it = mstack.begin();
+	MutantStack<int>::iterator ite = mstack.end();
 	std::cout << "Begining of Stack: " << *mstack.begin() << std::endl;
 	std::cout << "Test ++i: " << *++it << std::endl;
 	std::cout << "Test --i: " << *--it << std::endl;
@@ -40,8 +39,8 @@ int main()
 	}
 	std::cout << "---End---" << std::endl;
 	std::stack<int> s(mstack);
-	MutantStack<int>::iter s_it = mstack.begin();
-	MutantStack<int>::iter s_ite = mstack.end();
+	MutantStack<int>::iterator s_it = mstack.begin();
+	MutantStack<int>::iterator s_ite = mstack.end();
 	while (s_it != s_ite) {
 		std::cout << *s_it << std::endl;
 		++s_it;

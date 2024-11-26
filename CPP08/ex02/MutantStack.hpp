@@ -6,7 +6,7 @@
 /*   By: miturk <miturk@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 21:14:14 by wagons            #+#    #+#             */
-/*   Updated: 2024/11/25 17:23:48 by miturk           ###   ########.fr       */
+/*   Updated: 2024/11/26 12:40:41 by miturk           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,35 +28,35 @@ class MutantStack : public std::stack<T>{
 		MutantStack(const MutantStack &other);
 		MutantStack &operator=(const MutantStack &other);
 		~MutantStack();
-		typedef typename std::deque<T>::iterator iter;
-		iter begin() {
+		typedef typename std::deque<T>::iterator iterator;
+		iterator begin() {
 			return std::stack<T>::c.begin();
 		}
-		iter end() {
+		iterator end() {
 			return std::stack<T>::c.end();
 		}
 		
-		typedef typename std::deque<T>::const_iterator const_iter;
-		const_iter begin() const {
+		typedef typename std::deque<T>::const_iterator const_iterator;
+		const_iterator begin() const {
 			return std::stack<T>::c.begin();
 		}
-		const_iter end() const {
+		const_iterator end() const {
 			return std::stack<T>::c.end();
 		}
 
-		typedef typename std::deque<T>::reverse_iterator reverse_iter;
-		reverse_iter rbegin() {
+		typedef typename std::deque<T>::reverse_iterator reverse_iterator;
+		reverse_iterator rbegin() {
 			return std::stack<T>::c.rbegin();
 		}
-		reverse_iter rend() {
+		reverse_iterator rend() {
 			return std::stack<T>::c.rend();
 		}
 
-		typedef typename std::deque<T>::const_reverse_iterator const_reverse_iter;
-		const_reverse_iter rbegin() const {
+		typedef typename std::deque<T>::const_reverse_iterator const_reverse_iterator;
+		const_reverse_iterator rbegin() const {
 			return std::stack<T>::c.rbegin();
 		}
-		const_reverse_iter rend() const {
+		const_reverse_iterator rend() const {
 			return std::stack<T>::c.rend();
 		}
 };
