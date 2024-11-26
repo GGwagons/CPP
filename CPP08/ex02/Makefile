@@ -6,12 +6,12 @@
 #    By: miturk <miturk@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/24 21:13:11 by wagons            #+#    #+#              #
-#    Updated: 2024/11/25 13:45:15 by miturk           ###   ########.fr        #
+#    Updated: 2024/11/26 16:36:09 by miturk           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
-NAME = abomination
+NAME = mutantstack
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 SRCS =	main.cpp \

@@ -6,7 +6,7 @@
 /*   By: miturk <miturk@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 16:35:53 by wagons            #+#    #+#             */
-/*   Updated: 2024/11/25 13:04:30 by miturk           ###   ########.fr       */
+/*   Updated: 2024/11/26 17:51:15 by miturk           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,15 @@ void Span::addNumber(int num) {
 	_array.push_back(num);
 }
 
-int Span::shortestSpan() {
+unsigned int Span::shortestSpan() {
 	std::vector<int> issorted = _array;
 	std::sort(issorted.begin(), issorted.end());
 	int minSpan = std::numeric_limits<int>::max();
 	for (std::size_t i = 1; i < _array.size(); i++) {
 		int diff = issorted[i] - issorted[i - 1];
+		if (diff < 0) {
+			diff *= -1;
+		}
 		if (diff < minSpan) {
 			minSpan = diff;
 		}
@@ -54,7 +57,7 @@ int Span::shortestSpan() {
 	return minSpan;
 }
 
-int Span::longestSpan() {
+unsigned int Span::longestSpan() {
 	int minN = *std::min_element(_array.begin(), _array.end());
 	int maxN = *std::max_element(_array.begin(), _array.end());
 	return maxN - minN;

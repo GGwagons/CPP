@@ -6,7 +6,7 @@
 /*   By: miturk <miturk@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 16:29:27 by wagons            #+#    #+#             */
-/*   Updated: 2024/11/25 13:04:51 by miturk           ###   ########.fr       */
+/*   Updated: 2024/11/26 17:06:29 by miturk           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,12 @@ class Span {
 		
 		// MANUAL
 		void addNumber(int num);
-		int shortestSpan();
-		int longestSpan();
+		unsigned int shortestSpan();
+		unsigned int longestSpan();
 		
 		// FOR RANGE
-		template <typename Iterator>
-    	void addNumbers(Iterator begin, Iterator end) {
+		template <class inputIterator>
+    	void addRange(inputIterator begin, inputIterator end) {
     	    if (std::distance(begin, end) + _array.size() > _max) {
     	        throw InvalidSpan();
     	    }
