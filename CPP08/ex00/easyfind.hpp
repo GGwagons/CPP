@@ -14,8 +14,11 @@
 #define EASYFIND_HPP
 
 #include <iostream>
-#include <vector>
 #include <algorithm>
+#include <vector>
+#include <list>
+#include <deque>
+#include <exception>
 
 template <typename T>
 class NoFind : public std::exception {
