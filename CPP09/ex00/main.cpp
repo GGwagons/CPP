@@ -6,7 +6,7 @@
 /*   By: ggwagons <ggwagons@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/30 14:00:08 by ggwagons          #+#    #+#             */
-/*   Updated: 2024/12/01 02:59:09 by ggwagons         ###   ########.fr       */
+/*   Updated: 2024/12/01 19:09:28 by ggwagons         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,5 @@ int main (int argc, char **argv) {
 		std::cerr << e.what() << std::endl;
 		return (1);
 	}
-	std::cout << "File opened successfully" << std::endl;
-	std::cout << "Reading file..." << std::endl;
-
-	
 	return (0);
 }
