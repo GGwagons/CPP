@@ -3,41 +3,38 @@
 /*                                                        :::      ::::::::   */
 /*   BitcoinExchange.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggwagons <ggwagons@student.42.fr>          +#+  +:+       +#+        */
+/*   By: miturk <miturk@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/30 14:56:01 by ggwagons          #+#    #+#             */
-/*   Updated: 2024/12/01 02:56:00 by ggwagons         ###   ########.fr       */
+/*   Updated: 2024/12/02 17:08:38 by miturk           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "BitcoinExchange.hpp"
 
-// BitcoinExchange::BitcoinExchange() {
-// 	_year = 0;
-// 	_month = 0;
-// 	_day = 0;
-// 	_value = 0;
-// 	_fvalue = 0.0;
-// }
+template <typename T>
+BitcoinExchange<T>::BitcoinExchange() {}
 
-// BitcoinExchange::BitcoinExchange(const BitcoinExchange &copy) {
-// 	*this = copy;
-// }
+template <typename T>
+BitcoinExchange<T>::BitcoinExchange(const BitcoinExchange &copy) {*this = copy;}
 
-// BitcoinExchange &BitcoinExchange::operator=(const BitcoinExchange &copy) {
-// 	if (this != &copy){
-// 		_value = copy._value;
-// 		_year = copy._year;
-// 		_month = copy._month;
-// 		_day = copy._day;
-// 		_fvalue = copy._fvalue;
-// 	}
-// 	return (*this);
-// }
+template <typename T>
+BitcoinExchange<T> &BitcoinExchange<T>::operator=(const BitcoinExchange<T> &copy) {
+	if (this != &copy) {}
+	return *this;
+}
 
-// BitcoinExchange::~BitcoinExchange() {}
+template <typename T>
+BitcoinExchange<T>::~BitcoinExchange() {}
 
 // template <typename T>
-// void BitcoinExchange::setYear(T year) {
-// 	_year = year;
+// bool getTime(T &date) {
+//     std::time_t now = std::time(NULL);
+//     std::tm *localTime = std::localtime(&now);
+//     char buffer[11];
+//     std::strftime(buffer, sizeof(buffer), "%Y-%m-%d", localTime);
+//     if (date > buffer) {
+// 		return false;
+// 	}
+// 	return true;
 // }
