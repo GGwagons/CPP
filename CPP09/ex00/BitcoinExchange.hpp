@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   BitcoinExchange.hpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miturk <miturk@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ggwagons <ggwagons@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/30 14:56:17 by ggwagons          #+#    #+#             */
-/*   Updated: 2024/12/04 20:04:41 by miturk           ###   ########.fr       */
+/*   Updated: 2024/12/04 22:40:40 by ggwagons         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,50 +46,27 @@ class BitcoinExchange {
 		BitcoinExchange &operator=(const BitcoinExchange &copy);
 		~BitcoinExchange();
 	public:
-		void inputValue(const T &input, std::map<std::string, float> &csv, Split &s);
-		void csvValue(const T &input, std::map<std::string, float> &csv);
-		std::string theDate(const std::map<std::string, float> &csv, const T &date);
-		bool checkDate(T &date, Split &s);
-		bool theSetter(T &s);
-		bool getTime(Split &s);	
 };
-bool getTime(Split &s);
 bool dayWalker(Split &s);
-
-template <typename T>
-bool howRate(T &s) {
-	std::stringstream fss(s.value);
-	fss >> s._fvalue;
-	// std::cout << "[" << s._fvalue << "]" << std::endl;
-	if (s._fvalue < 0 || !fss.eof() || fss.fail()) {
-		return false;
-	}
-	return true;
-}
-
-template <typename T>
-bool howMuch(T &s) {
-	std::stringstream fss(s.value);
-	fss >> s._fvalue;
-	// std::cout << "[" << s._fvalue << "]" << std::endl;
-	if (s._fvalue < 0 || s._fvalue > 1000 || !fss.eof() || fss.fail()) {
-		return false;
-	}
-	return true;
-}
+bool getTime(Split &s);
+bool howMuch(Split &s, std::string &value);
+bool howRate(Split &s, std::string &value);
 
 template <typename T>
 bool checkDate(T &date, Split &s) {
 	date.erase(std::remove(date.begin(), date.end(), ' '), date.end());
+	// std::cout << "Date: [" << date << "]" << std::endl;
 	if (date.size()!= 10 || date.find_first_of('-') != 4 || date.find_last_of('-') != 7) {return false;}
 	else {
 		s._year = std::atoi(date.substr(0, 4).c_str());
+		if (s._year < 0) {return false;}
 		s._month = std::atoi(date.substr(5, 2).c_str());
 		if (s._month < 1 || s._month > 12) {return false;}
 		s._day = std::atoi(date.substr(8, 2).c_str());
+		if (s._day < 1 || s._day > 31) {return false;}
         int leap = (s._year % 4 == 0 && (s._year % 400 == 0 || s._year % 100 != 0)) ? 1 : 0;
-        if (leap == 1 && s._month == 2 && s._day > 29) {return false;}
-        else {if (leap == 0 && s._month == 2 && s._day > 28) {return false;}};
+        if (leap == 1 && s._month == 2 && s._day > 29) {std::cerr << "Leap year: "; return false;}
+        else {if (leap == 0 && s._month == 2 && s._day > 28) {std::cerr << "Not a Leap year: "; return false;}};
 		if (dayWalker(s) == false) {return false;}
 	}
 	return true;
@@ -97,40 +74,52 @@ bool checkDate(T &date, Split &s) {
 
 template <typename T>
 void csvValue(const T &input, std::map<std::string, float> &csv, Split &s) {
+	int flag = 0;
+	int i = 0;
     std::ifstream file(input);
     if (!file.is_open()) {
         throw std::runtime_error("Error: could not open file");
     }
     std::string line;
     std::getline(file, line);
-    while (line.empty()) {
+    while (i++, line.empty()) {
+		
         if (std::getline(file, line).eof()) {
             throw std::runtime_error("Error: empty file");
         }
     }
-    while (std::getline(file, line)) {
+    while (i++, std::getline(file, line)) {
+		if (flag == 1) {
+			std::cout << std::endl;
+		}
+		flag = 0;
         std::istringstream ss(line.c_str());
         std::string date; std::string value;
         if (std::getline(ss, date, ',') &&  std::getline(ss, value)) {
             if (checkDate(date, s) == true) {
 				if (getTime(s) == false) {
-					std::cerr << "Error: How can you see into the future => " << date << std::endl;
+					std::cerr << "Error: DataBase: index: [" << i << "] => Values: [" << line << "]";
+					flag = 1;
 					continue;
 				}
             }
 			else {
-				std::cerr << "Error: invalid date format => " << date << std::endl;
+				std::cerr << "Error: DataBase: index: [" << i << "] => Values: [" << line << "]";
+				flag = 1;
 				continue;
 			}
-			if (howRate(s) == false) {
-				std::cerr << "Error: invalid value format => " << value << std::endl;
+			if (howRate(s, value) == false) {
+				std::cerr << "Error: DataBase: index: [" << i << "] => Values: [" << line << "]";
+				flag = 1;
 				continue;
 			}
-			
             float f = std::atof(value.c_str());
             csv[date] = f;
         }
     }
+	if (flag == 1) {
+		throw std::runtime_error("");
+	}
 }
 
 template <typename T>
@@ -149,62 +138,57 @@ template <typename T>
 void inputValue(const T &input, std::map<std::string, float> &csv, Split &s) {
     std::ifstream file(input);
     if (!file.is_open()) {
-        throw std::runtime_error("Error: could not open file");
+        throw std::runtime_error("Error: Could Not Open File");
     }
     std::string line;
     std::getline(file, line);
     while (line.empty()) {
         if (std::getline(file, line).eof()) {
-            throw std::runtime_error("Error: empty file");
+            throw std::runtime_error("Error: Empty File");
         }
     }
     if(line.find("date | value") == std::string::npos) {
-		std::cerr << "Error: invalid file format => " << line;
+		std::cerr << "Error: Invalid File Format => " << line;
         throw std::runtime_error("");
     }
     while (std::getline(file, line)) {
         if (line.find("date | value") != std::string::npos) {
-			std::cerr << "Error: invalid file format => [" << line << "] x2";
+			std::cerr << "Error: Invalid File Format => [" << line << "] x2";
             throw std::runtime_error("");
         }
 		if (line.empty()) {continue;}
         std::istringstream ss(line.c_str()); std::string date; std::string value;
         if (std::getline(ss, date, '|') &&  std::getline(ss, value)) {
+			date.erase(std::remove(date.begin(), date.end(), ' '), date.end());
             if (checkDate(date, s) == true) {
 				if (getTime(s) == false) {
-					std::cerr << "Error: why do you want to know the future => " << date << std::endl;
+					std::cerr << "Error: Stop It Future boi => " << date << std::endl;
 					continue;
 				}
 			}
 			else {
-				std::cerr << "Error: invalid date format => " << date << std::endl;
+				std::cerr << "Error: Invalid Date format => " << date << std::endl;
 				continue;
 			}
-			date.erase(std::remove(date.begin(), date.end(), ' '), date.end());
 			value.erase(std::remove(value.begin(), value.end(), ' '), value.end());
-			s.value = value;
-			if (howMuch(s) == false) {
-				std::cerr << "Error: invalid value format => " << value << std::endl;
+			if (howMuch(s, value) == false) {
+				std::cerr << "Error: Invalid value format => " << value << std::endl;
 				continue;
 			}
             std::string closeDate = theDate(csv, date);
             if (closeDate.empty()) {
-				std::cerr << "Error: no data for date => " << date << std::endl;
+				std::cerr << "Error: No Data For Date => " << date << std::endl;
                 continue;
             }
             float value = csv.at(closeDate);
-			if (value < 0) {
-				std::cerr << "Error: invalid value" << std::endl;
-				continue;
-			}
 			float res;
 			res = s._fvalue * value;
-            std::ostringstream output;
-            output << std::fixed << std::setprecision(2) << res;
-            std::cout << date << " => " << s.value << " = " << output.str() << std::endl;
+			std::ostringstream out_t;
+            out_t << std::fixed << std::setprecision(2) << res;
+            std::cout << date << " => " << s.value << " = " << out_t.str() << std::endl;
         }
 		else {
-			std::cerr << "Error: invalid format => " << line << std::endl;
+			std::cerr << "Error: Invalid format => " << line << std::endl;
 			continue;
 		}
     }

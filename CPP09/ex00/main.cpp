@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miturk <miturk@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ggwagons <ggwagons@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/30 14:00:08 by ggwagons          #+#    #+#             */
-/*   Updated: 2024/12/04 18:04:49 by miturk           ###   ########.fr       */
+/*   Updated: 2024/12/04 22:33:05 by ggwagons         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void checkInput(AC count, AV &input, CS &value) {
 	std::ifstream file(input);
 	std::ifstream info(value);
 	if (!file.is_open() || !info.is_open()){
-		throw std::runtime_error("Error: could not open file");
+		throw std::runtime_error("Error: Could Not Open File");
 	}
 }
 
@@ -32,9 +32,8 @@ int main (int argc, char **argv) {
 		csvValue("data.csv", csv, s);
 		inputValue(argv[1], csv, s);		
 	}
-	catch (std::exception &e){
+	catch (std::runtime_error &e){
 		std::cerr << e.what() << std::endl;
-		return (1);
 	}
 	return (0);
 }
