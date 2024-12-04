@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggwagons <ggwagons@student.42.fr>          +#+  +:+       +#+        */
+/*   By: miturk <miturk@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/30 14:00:08 by ggwagons          #+#    #+#             */
-/*   Updated: 2024/12/01 19:09:28 by ggwagons         ###   ########.fr       */
+/*   Updated: 2024/12/04 18:04:49 by miturk           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,11 @@ void checkInput(AC count, AV &input, CS &value) {
 
 int main (int argc, char **argv) {
 	try {
+		Split s;
 		std::map<std::string, float> csv;
 		checkInput(argc, argv[1], "data.csv");
-		csvValue("data.csv", csv);
-		inputValue(argv[1], csv);		
+		csvValue("data.csv", csv, s);
+		inputValue(argv[1], csv, s);		
 	}
 	catch (std::exception &e){
 		std::cerr << e.what() << std::endl;

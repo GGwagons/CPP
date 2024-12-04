@@ -6,7 +6,7 @@
 /*   By: miturk <miturk@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/30 14:56:01 by ggwagons          #+#    #+#             */
-/*   Updated: 2024/12/02 17:08:38 by miturk           ###   ########.fr       */
+/*   Updated: 2024/12/04 19:50:37 by miturk           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,32 @@ BitcoinExchange<T> &BitcoinExchange<T>::operator=(const BitcoinExchange<T> &copy
 template <typename T>
 BitcoinExchange<T>::~BitcoinExchange() {}
 
-// template <typename T>
-// bool getTime(T &date) {
-//     std::time_t now = std::time(NULL);
-//     std::tm *localTime = std::localtime(&now);
-//     char buffer[11];
-//     std::strftime(buffer, sizeof(buffer), "%Y-%m-%d", localTime);
-//     if (date > buffer) {
-// 		return false;
-// 	}
-// 	return true;
-// }
+bool getTime(Split &s) {
+	std::time_t now = std::time(NULL);
+    std::tm *localTime = std::localtime(&now);
+    char timeBuffer[11];
+    std::strftime(timeBuffer, sizeof(timeBuffer), "%Y-%m-%d", localTime);
+    std::string buffer = static_cast<std::string>(timeBuffer);
+	int Year = std::atoi(buffer.substr(0, 4).c_str());
+	int Month = std::atoi(buffer.substr(5, 2).c_str());
+	int Day = std::atoi(buffer.substr(8, 2).c_str());
+	if (Year >= s._year) {
+		if (Month >= s._month) {
+			if (Day >= s._day) {return true;}
+		}
+	}
+	else {return false;}
+	return true;
+}
+
+bool dayWalker(Split &s) {
+	if (s._month <= 5) {
+		if (s._month <= 5 && s._month % 2 == 0 && s._day > 30) {return false;}
+		else {if (s._month <= 5 && s._month % 2 != 0 && s._day > 31) {return false;}};
+	}
+	else {
+		if (((s._month > 5 && s._month % 2 == 0) && s._month != 6) && s._day > 31) {return false;}
+		else {if (((s._month > 5 && s._month % 2 != 0) && (s._month != 7 || s._month == 6)) && s._day > 30) {return false;}};
+	}
+	return true;
+}
