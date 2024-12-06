@@ -3,39 +3,79 @@
 /*                                                        :::      ::::::::   */
 /*   RPN.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miturk <miturk@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ggwagons <ggwagons@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 15:13:07 by miturk            #+#    #+#             */
-/*   Updated: 2024/12/05 17:55:23 by miturk           ###   ########.fr       */
+/*   Updated: 2024/12/06 20:47:53 by ggwagons         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "RPN.hpp"
 
-template <typename S, typename L>
-RPN<S, L>::RPN() : std::stack<S, L>(),  _result(0), _input(""), _numA(0.0), _numB(0.0) {}
+RPN::RPN() : _stack(){}
 
-template <typename S, typename L>
-RPN<S, L>::RPN(const RPN &copy) : std::stack<S, L>(copy), _stack(copy._stack), _input(copy._input), _result(copy._result), _numA(copy._numA), _numB(_numB) {}
+RPN::RPN(std::stack<double, std::list<double> > stack) : _stack(stack) {}
 
-template <typename S, typename L>
-RPN<S, L> &RPN<S, L>::operator=(const RPN &copy) {
-	if (this == &copy)
-		return (*this);
-	std::stack<S, L>::operator=(copy);
-	_stack = copy._stack;
-	_input = copy._input;
-	_result = copy._result;
+RPN::RPN(const RPN &copy) { *this = copy; }
+
+
+RPN &RPN::operator=(const RPN &copy) {
+	if (this != &copy) {
+		_stack = copy._stack;
+	}
 	return (*this);
 }
 
-template <typename S, typename L>
-RPN<S, L>::~RPN() {}
+RPN::~RPN() {}
 
-template <typename S, typename L>
-void RPN<S, L>::readInput(int in) {
-	if (in != ' ') {
-		_stack.push(in);
+bool RPN::Operator(const std::string &input) {
+	if (input == "+" || input == "-" || input == "*" || input == "/" || input == "%") {
+		return (true);
 	}
-	return ;
+	return (false);
+}
+
+void RPN::getStack() {
+	std::stack<double, std::list<double> > tmp = _stack;
+	std::cout << "R: " << tmp.top() << std::endl;
+}
+
+double RPN::Operation(double a, double b, const std::string &op) {
+	if (op == "+") {
+		return (a + b);
+	}
+	else if (op == "-") {
+		return (a - b);
+	}
+	else if (op == "*") {
+		return (a * b);
+	}
+	else if (op == "/") {
+		return (a / b);
+	}
+	return (0);
+}
+
+void RPN::readInput(std::string &token) {
+	if ((token[0] != ' ' && !Operator(token) && !isdigit(token[0])) || token.empty()) {
+		throw std::runtime_error("R: Error");
+	}
+	if (token[0] == ' ') {return ;}
+	if (isdigit(token[0])) {
+		_stack.push(std::atof(token.c_str()));
+		return;
+	}
+	if (Operator(token)) {
+		if (_stack.size() < 2) {
+			throw std::runtime_error("Not enough values");
+		}
+		double a = _stack.top();
+		_stack.pop();
+		double b = _stack.top();
+		_stack.pop();
+		if (a == 0 && token == "/") {
+			throw std::runtime_error("Division by zero");
+		}
+		_stack.push(Operation(b, a, token));
+	}
 }

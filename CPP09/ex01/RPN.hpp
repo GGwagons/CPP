@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   RPN.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miturk <miturk@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ggwagons <ggwagons@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 15:09:38 by miturk            #+#    #+#             */
-/*   Updated: 2024/12/05 17:28:41 by miturk           ###   ########.fr       */
+/*   Updated: 2024/12/06 20:28:29 by ggwagons         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,27 +15,31 @@
 
 #include <iostream>
 #include <string>
-#include <list>
-#include <algorithm>
 #include <stack>
+#include <list>
+#include <iterator>
+#include <algorithm>
 #include <iomanip>
 #include <fstream>
+#include <cstdlib>
+#include <sstream>
+#include <fstream>
 
-template <typename S, typename L = std::list<S> >
-class RPN : public std::stack<T, L> {
-private:
-	unsigned int _size;
-	std::string _input;
-	double _numA;
-	double _numB;
-	double _result;
-public:
-	RPN();
-	RPN(const std::string &input);
-	RPN(const RPN &copy);
-	RPN &operator=(const RPN &copy);
-	~RPN();
-	void readInput(int in);
+class RPN {
+	private:
+		std::stack<double, std::list<double> > _stack;
+		bool Operator(const std::string &input);
+		double Operation(double a, double b, const std::string &op);
+	public:
+		void getStack();
+		RPN();
+		RPN(std::stack<double, std::list<double> > stack);
+		RPN(const RPN &copy);
+		RPN &operator=(const RPN &copy);
+		~RPN();
+		void readInput(std::string &token);
 };
+int runOne(int argc, char *argv[]);
+int runTwo(std::fstream &file);
 
 #endif
