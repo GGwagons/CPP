@@ -5,16 +5,16 @@
 #                                                     +:+ +:+         +:+      #
 #    By: miturk <miturk@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/12/05 15:07:38 by miturk            #+#    #+#              #
-#    Updated: 2024/12/09 12:52:22 by miturk           ###   ########.fr        #
+#    Created: 2024/12/09 13:04:55 by miturk            #+#    #+#              #
+#    Updated: 2024/12/09 13:32:52 by miturk           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = RPN
+NAME = PmergeMe
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 SRCS =	main.cpp \
-		RPN.cpp \
+		PmergeMe.cpp \
 
 OBJS = $(SRCS:.cpp=.o)
 
