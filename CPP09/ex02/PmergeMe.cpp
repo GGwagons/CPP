@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PmergeMe.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miturk <miturk@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ggwagons <ggwagons@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 13:28:50 by miturk            #+#    #+#             */
-/*   Updated: 2024/12/10 17:24:09 by miturk           ###   ########.fr       */
+/*   Updated: 2024/12/15 02:01:47 by ggwagons         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,3 +18,36 @@ void timeStamp(timeval &start, timeval &end) {
 	size_t elapsedTime = (Tend - Tstart);
 	std::cout << elapsedTime << "ms" << std::endl;
 }
+
+void Vector(int argc, char **argv, Pmerge &data) {
+	data.compares = 0;	
+	::add(data.vec, argc, argv);
+	std::cout << "Before: ";
+	::print(data.vec);
+	mergeSort(data.vec, data);
+	std::cout << "After: ";
+	::print(data.vec);
+	std::cout << "Compares: " << data.compares << std::endl;
+	// gettimeofday(&data.end, NULL);
+}
+
+void Deque(int argc, char **argv, Pmerge &data) {
+	data.compares = 0;
+	// gettimeofday(&data.start, NULL);
+	::add(data.deq, argc, argv);
+	std::cout << "Before: ";
+	::print(data.deq);
+	mergeSort(data.deq, data);
+	std::cout << "After: ";
+	::print(data.deq);
+	std::cout << "Compares: " << data.compares << std::endl;
+	// gettimeofday(&data.end, NULL);
+}
+
+// template <typename V, typename D>
+// void printout(V &vec, D &deq) {
+// 	std::cout << "Vector: ";
+// 	::print(vec);
+// 	std::cout << "Deque: ";
+// 	::print(deq);
+// }

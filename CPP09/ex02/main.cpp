@@ -3,47 +3,34 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miturk <miturk@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ggwagons <ggwagons@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 13:27:57 by miturk            #+#    #+#             */
-/*   Updated: 2024/12/10 18:56:08 by miturk           ###   ########.fr       */
+/*   Updated: 2024/12/15 00:06:34 by ggwagons         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PmergeMe.hpp"
-
-
-// typedef std::vector<std::vector<int> > Vvector;
 
 int main(int argc, char **argv) {
 	if (argc < 2) {
 		std::cerr << "Usage: ./a.out [num1 num2 num3 ...]" << std::endl;
 		return (1);
 	}
-	// struct timeval start, end;
-	// gettimeofday(&start, NULL);
-	Vvector V;
-	std::cout << "[ VECTOR ]" << std::endl;
-	::add(V, argc, argv);
-	::print(V);
-	std::cout << std::endl;
-	V = ::theSort(V);
-	::print(V);
-	std::cout << std::endl;
-	// std::cout << "<-------------------------------------------->" << std::endl;
-	// Ddeque D;
-	// std::cout << "[ DEQUE ]" << std::endl;
-	// ::add(D, argc, argv);
-	// ::print(D);
-	// std::cout << std::endl;
-	// gettimeofday(&end, NULL);
-	// std::cout << "Time to process a range of " << V[0].size() << " elements with std::[";
-	// ::print(V);
-	// std::cout << "] : ";
-	// timeStamp(start, end);
-	// std::cout << std::endl;
-	
-
-	
+	try {
+		PmergeMe data;
+		gettimeofday(&data.start, NULL);
+		Vector(argc, argv, data);
+		gettimeofday(&data.end, NULL);
+		timeStamp(data.start, data.end);
+		gettimeofday(&data.start, NULL);
+		Deque (argc, argv, data);
+		gettimeofday(&data.end, NULL);
+		timeStamp(data.start, data.end);
+		
+	} catch (std::exception &e) {
+		std::cerr << e.what() << std::endl;
+		return (1);
+	}
 	return (0);
 }
