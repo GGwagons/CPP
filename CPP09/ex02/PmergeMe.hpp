@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PmergeMe.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggwagons <ggwagons@student.42.fr>          +#+  +:+       +#+        */
+/*   By: miturk <miturk@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 13:29:08 by miturk            #+#    #+#             */
-/*   Updated: 2024/12/15 00:01:27 by ggwagons         ###   ########.fr       */
+/*   Updated: 2024/12/16 16:39:59 by miturk           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,7 @@
 typedef std::deque<int> _deque;
 typedef std::vector<int> _vector;
 
-typedef struct PmergeMe
-{
+typedef struct PmergeMe {
 	_vector vec;
 	_deque deq;
 	int compares;
@@ -60,41 +59,13 @@ void add(T &container, int argc, char **argv) {
 }
 
 template <typename T>
-void mergeSort(T &container, PmergeMe &data) {
-    if (container.size() < 2) {
-        return ;
-    }
-	T top; 
-	T bot;
-	typename T::iterator it = container.begin();
-	typename T::iterator pair = it;
-	typename T::iterator ite = container.end();
-	for (; it != ite;) {
-		if (it + 1 == ite) {
-			break;
-		}
-		pair = it + 1;
-		if (*it > *pair) {
-			top.push_back(*it); bot.push_back(*pair);
-		}
-		else {
-			top.push_back(*pair); bot.push_back(*it);
-		}
-		it = pair + 1; data.compares++;
-	}
-	if (container.size() % 2 != 0) {
-		bot.push_back(container.back());
-	}
-	mergeSort(top, data);
-	typename T::iterator sit = bot.begin();
-	typename T::iterator pos;
-	for (; sit != bot.end(); ++sit) {
-        pos = std::lower_bound(top.begin(), top.end(), *sit);
-        top.insert(pos, *sit);
-    }
-	container.swap(top);
+void jakobSomething(T &container, Pmerge &data) {
+	::print(container);
+	std::cout << data.compares << std::endl;
 }
 
+void mergeSortDeq(_deque &container, Pmerge &data);
+void mergeSortVec(_vector &container, Pmerge &data);
 void timeStamp(timeval &start, timeval &end);
 void Vector(int argc, char **argv, Pmerge &data);
 void Deque(int argc, char **argv, Pmerge &data);

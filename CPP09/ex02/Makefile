@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ggwagons <ggwagons@student.42.fr>          +#+  +:+       +#+         #
+#    By: miturk <miturk@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/10 13:28:19 by miturk            #+#    #+#              #
-#    Updated: 2024/12/14 22:57:44 by ggwagons         ###   ########.fr        #
+#    Updated: 2024/12/16 16:13:28 by miturk           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,6 +15,8 @@ CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 SRCS =	main.cpp \
 		PmergeMe.cpp \
+		PmergeMeVec.cpp \
+		PmergeMeDeq.cpp
 
 OBJS = $(SRCS:.cpp=.o)
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggwagons <ggwagons@student.42.fr>          +#+  +:+       +#+        */
+/*   By: miturk <miturk@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 13:27:57 by miturk            #+#    #+#             */
-/*   Updated: 2024/12/15 00:06:34 by ggwagons         ###   ########.fr       */
+/*   Updated: 2024/12/16 13:52:54 by miturk           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,9 @@ int main(int argc, char **argv) {
 	}
 	try {
 		PmergeMe data;
-		gettimeofday(&data.start, NULL);
 		Vector(argc, argv, data);
-		gettimeofday(&data.end, NULL);
 		timeStamp(data.start, data.end);
-		gettimeofday(&data.start, NULL);
 		Deque (argc, argv, data);
-		gettimeofday(&data.end, NULL);
 		timeStamp(data.start, data.end);
 		
 	} catch (std::exception &e) {

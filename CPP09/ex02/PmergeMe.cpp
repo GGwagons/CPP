@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PmergeMe.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggwagons <ggwagons@student.42.fr>          +#+  +:+       +#+        */
+/*   By: miturk <miturk@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 13:28:50 by miturk            #+#    #+#             */
-/*   Updated: 2024/12/15 02:01:47 by ggwagons         ###   ########.fr       */
+/*   Updated: 2024/12/16 16:09:10 by miturk           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,27 +21,28 @@ void timeStamp(timeval &start, timeval &end) {
 
 void Vector(int argc, char **argv, Pmerge &data) {
 	data.compares = 0;	
+	gettimeofday(&data.start, NULL);
 	::add(data.vec, argc, argv);
-	std::cout << "Before: ";
-	::print(data.vec);
-	mergeSort(data.vec, data);
-	std::cout << "After: ";
-	::print(data.vec);
+	// std::cout << "Before: ";
+	// ::print(data.vec);
+	mergeSortVec(data.vec, data);
+	// std::cout << "After: ";
+	// ::print(data.vec);
 	std::cout << "Compares: " << data.compares << std::endl;
-	// gettimeofday(&data.end, NULL);
+	gettimeofday(&data.end, NULL);
 }
 
 void Deque(int argc, char **argv, Pmerge &data) {
 	data.compares = 0;
-	// gettimeofday(&data.start, NULL);
+	gettimeofday(&data.start, NULL);
 	::add(data.deq, argc, argv);
-	std::cout << "Before: ";
-	::print(data.deq);
-	mergeSort(data.deq, data);
-	std::cout << "After: ";
-	::print(data.deq);
+	// std::cout << "Before: ";
+	// ::print(data.deq);
+	mergeSortDeq(data.deq, data);
+	// std::cout << "After: ";
+	// ::print(data.deq);
 	std::cout << "Compares: " << data.compares << std::endl;
-	// gettimeofday(&data.end, NULL);
+	gettimeofday(&data.end, NULL);
 }
 
 // template <typename V, typename D>
