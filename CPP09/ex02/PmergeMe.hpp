@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PmergeMe.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miturk <miturk@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ggwagons <ggwagons@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 13:29:08 by miturk            #+#    #+#             */
-/*   Updated: 2024/12/17 15:48:57 by miturk           ###   ########.fr       */
+/*   Updated: 2024/12/17 20:54:06 by ggwagons         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,13 +80,22 @@ void add(T &container, int argc, char **argv) {
 }
 
 // template <typename T>
+// void pushTo(T &container, T & temp) {
+// 	typename T::iterator it = temp.begin();
+// 	typename T::iterator ite = temp.end();
+// 	for (; it != ite; it++) {
+// 		container.push_back(*it);
+// 	}
+// }
+
+// template <typename T>
 // void MergeInsertionSort(T &container, Pmerge &data) {
 // 	data.compares++;
 // 	::print(container);
 // }
 
 _Ddeq &stackSortDeq(_Ddeq &container, Pmerge &data);
-_Vvec &stackSortVec(_Vvec &container, Pmerge &data);
+_Vvec stackSortVec(_Vvec &container, Pmerge &data);
 void timeStamp(timeval &start, timeval &end);
 void Vector(int argc, char **argv, Pmerge &data);
 void Deque(int argc, char **argv, Pmerge &data);

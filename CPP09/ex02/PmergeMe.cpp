@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PmergeMe.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miturk <miturk@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ggwagons <ggwagons@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 13:28:50 by miturk            #+#    #+#             */
-/*   Updated: 2024/12/17 17:44:28 by miturk           ###   ########.fr       */
+/*   Updated: 2024/12/17 20:52:43 by ggwagons         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,11 @@ void Vector(int argc, char **argv, Pmerge &data) {
 	::add(data.vec, argc, argv);
 	std::cout << "Before: ";
 	::print(data.vec);
-	_Vvec res = stackSortVec(data.vec, data); //((data.vec.size() / 2));
-	// res = stackSortVec(data.vec, data);
+	// _Vvec res;
+	// res.resize((stackSortVec(data.vec, data)).size());
+	data.vec = stackSortVec(data.vec, data);
 	std::cout << "After: ";
-	::print(res);
+	::print(data.vec);
 	std::cout << "Compares: " << data.compares << std::endl;
 	gettimeofday(&data.end, NULL);
 }
