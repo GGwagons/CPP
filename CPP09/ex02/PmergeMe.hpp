@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PmergeMe.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miturk <miturk@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ggwagons <ggwagons@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 13:29:08 by miturk            #+#    #+#             */
-/*   Updated: 2024/12/16 16:39:59 by miturk           ###   ########.fr       */
+/*   Updated: 2024/12/16 21:57:34 by ggwagons         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,40 @@ void add(T &container, int argc, char **argv) {
 }
 
 template <typename T>
-void jakobSomething(T &container, Pmerge &data) {
+T MergeInsertionSort(T &top, T &bot, Pmerge &data) {
+	T container;
+	size_t i = 0;
+	size_t j = 0;
+	if (top[i] < top[i + 1] && top.size() > 1) {
+		::print(top);
+		::print(bot);
+		puts("swap");
+		std::swap(top[i], top[i + 1]);
+		std::swap(bot[i], bot[i + 1]);
+		data.compares++;
+		::print(top);
+		::print(bot);
+	}
+	for (; i < top.size(); i++) {
+		if (top[i] > bot[j]) {
+			container.push_back(top[i]);
+		}
+		else {
+			container.push_back(bot[j]);
+		}
+		j++;
+		data.compares++;
+	}
+	for (; i < top.size(); i++) {
+		container.push_back(top[i]);
+		data.compares++;
+	}
+	for (; j < bot.size(); j++) {
+		container.push_back(bot[j]);
+		data.compares++;
+	}
 	::print(container);
-	std::cout << data.compares << std::endl;
+	return container;
 }
 
 void mergeSortDeq(_deque &container, Pmerge &data);

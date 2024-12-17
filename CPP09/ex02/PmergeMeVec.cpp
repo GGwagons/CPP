@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PmergeMeVec.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miturk <miturk@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ggwagons <ggwagons@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 14:03:59 by miturk            #+#    #+#             */
-/*   Updated: 2024/12/16 16:40:42 by miturk           ###   ########.fr       */
+/*   Updated: 2024/12/16 21:46:13 by ggwagons         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,7 @@ void mergeSortVec(_vector &container, Pmerge &data) {
     if (container.size() < 3) {
         return ;
     }
-	_vector top; 
-	_vector bot;
+	_vector top; _vector bot;
 	IT	it = container.begin();
 	IT pair = it;
 	IT ite = container.end();
@@ -39,17 +38,20 @@ void mergeSortVec(_vector &container, Pmerge &data) {
 	if (container.size() % 2 != 0) {
 		bot.push_back(container.back());
 	}
-	puts("hi");
+	mergeSortVec(top, data);
+	puts("hihi");
 	::print(top);
 	::print(bot);
-	mergeSortVec(top, data);
-	IT sit = bot.begin();
-	IT pos;
-	for (; sit != bot.end(); ++sit) {
-        pos = std::lower_bound(top.begin(), top.end(), *sit);
-        top.insert(pos, *sit);
-		data.compares++;
-		jakobSomething(top, data);
-    }
-	container.swap(top);
+	_vector res(top.size() + bot.size());
+	res = MergeInsertionSort(top, bot, data);
+	puts("testy");
+	::print(res);
+	// IT sit = bot.begin(); IT pos;
+	// for (; sit != bot.end(); ++sit) {
+    //     pos = std::lower_bound(top.begin(), top.end(), *sit);
+    //     top.insert(pos, *sit);
+	// 	data.compares++;
+	// 	jakobSomething(top,  data);
+    // }
+	// container.swap(top);
 }

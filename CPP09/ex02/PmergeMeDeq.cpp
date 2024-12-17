@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PmergeMeDeq.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miturk <miturk@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ggwagons <ggwagons@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 14:04:14 by miturk            #+#    #+#             */
-/*   Updated: 2024/12/16 16:41:15 by miturk           ###   ########.fr       */
+/*   Updated: 2024/12/16 20:24:41 by ggwagons         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,17 +39,22 @@ void mergeSortDeq(_deque &container, Pmerge &data) {
 	if (container.size() % 2 != 0) {
 		bot.push_back(container.back());
 	}
-	puts("hi");
-	::print(top);
-	::print(bot);
+	// puts("hi");
+	// ::print(top);
+	// ::print(bot);
 	mergeSortDeq(top, data);
-	IT sit = bot.begin();
-	IT pos;
-	for (; sit != bot.end(); ++sit) {
-        pos = std::lower_bound(top.begin(), top.end(), *sit);
-        top.insert(pos, *sit);
-		data.compares++;
-		jakobSomething(top, data);
-    }
-	container.swap(top);
+	_deque res(top.size() + bot.size());
+	res = MergeInsertionSort(top, bot, data);
+	puts("testy");
+	::print(res);
+	mergeSortDeq(res, data);
+	// IT sit = bot.begin();
+	// IT pos;
+	// for (; sit != bot.end(); ++sit) {
+    //     pos = std::lower_bound(top.begin(), top.end(), *sit);
+    //     top.insert(pos, *sit);
+	// 	data.compares++;
+	// 	jakobSomething(top, data);
+    // }
+	// container.swap(top);
 }

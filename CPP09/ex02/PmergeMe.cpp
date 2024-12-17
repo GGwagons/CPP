@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PmergeMe.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miturk <miturk@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ggwagons <ggwagons@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 13:28:50 by miturk            #+#    #+#             */
-/*   Updated: 2024/12/16 16:09:10 by miturk           ###   ########.fr       */
+/*   Updated: 2024/12/16 20:06:25 by ggwagons         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ void Vector(int argc, char **argv, Pmerge &data) {
 	// std::cout << "Before: ";
 	// ::print(data.vec);
 	mergeSortVec(data.vec, data);
-	// std::cout << "After: ";
-	// ::print(data.vec);
+	std::cout << "After: ";
+	::print(data.vec);
 	std::cout << "Compares: " << data.compares << std::endl;
 	gettimeofday(&data.end, NULL);
 }
@@ -39,8 +39,8 @@ void Deque(int argc, char **argv, Pmerge &data) {
 	// std::cout << "Before: ";
 	// ::print(data.deq);
 	mergeSortDeq(data.deq, data);
-	// std::cout << "After: ";
-	// ::print(data.deq);
+	std::cout << "After: ";
+	::print(data.deq);
 	std::cout << "Compares: " << data.compares << std::endl;
 	gettimeofday(&data.end, NULL);
 }
