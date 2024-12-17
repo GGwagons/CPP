@@ -3,58 +3,51 @@
 /*                                                        :::      ::::::::   */
 /*   PmergeMeDeq.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggwagons <ggwagons@student.42.fr>          +#+  +:+       +#+        */
+/*   By: miturk <miturk@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 14:04:14 by miturk            #+#    #+#             */
-/*   Updated: 2024/12/16 20:24:41 by ggwagons         ###   ########.fr       */
+/*   Updated: 2024/12/17 13:59:08 by miturk           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PmergeMe.hpp"
 
-typedef _deque::iterator IT;
-
-void mergeSortDeq(_deque &container, Pmerge &data) {
-    if (container.size() < 3) {
-        return ;
-    }
-	_deque top;
-	_deque bot;
-	IT it = container.begin();
-	IT pair = it;
-	IT ite = container.end();
-	for (; it != ite;) {
-		if (it + 1 == ite) {
-			break;
-		}
-		pair = it + 1;
-		if (*it > *pair) {
-			top.push_back(*it); bot.push_back(*pair);
-		}
+_Ddeq &stackSortDeq(_Ddeq &container, Pmerge &data) {
+	if (container[0].size() < 3) {
+		return container;
+	}
+	_Ddeq temp(container.size() * 2);
+	puts("D test");
+	for (size_t x = 1; x < container[0].size(); x += 2) {
+		if (container[0][x] > container[0][x - 1]) {
+			temp[0].push_back(container[0][x]);
+			temp[1].push_back(container[0][x - 1]);
+			for (size_t y = 1; y < container.size(); y++) {
+				temp[y].push_back(container[0][x]);
+				temp[y + 1].push_back(container[0][x - 1]);
+			}
+		} 
 		else {
-			top.push_back(*pair); bot.push_back(*it);
+			temp[0].push_back(container[0][x - 1]);
+			temp[1].push_back(container[0][x]);
+			for (size_t y = 1; y < container.size(); y++) {
+				temp[y].push_back(container[0][x - 1]);
+				temp[y + 1].push_back(container[0][x]);
+			}
 		}
-		it = pair + 1; data.compares++;
+		for (size_t y = 1; y < container.size(); y++) {
+			size_t size = container[0].size();
+			if (container[y].size() > size) {
+				for (size_t i = size; i < container[y].size(); i++) {
+					container[y - 1].push_back(container[y][2*i+1]);			
+				}
+			}
+		}
+		::print(temp);
+		return stackSortDeq(temp, data);
 	}
-	if (container.size() % 2 != 0) {
-		bot.push_back(container.back());
+	if (container[0].size() % 2 != 0) {
+		temp[1].push_back(container[0].back());
 	}
-	// puts("hi");
-	// ::print(top);
-	// ::print(bot);
-	mergeSortDeq(top, data);
-	_deque res(top.size() + bot.size());
-	res = MergeInsertionSort(top, bot, data);
-	puts("testy");
-	::print(res);
-	mergeSortDeq(res, data);
-	// IT sit = bot.begin();
-	// IT pos;
-	// for (; sit != bot.end(); ++sit) {
-    //     pos = std::lower_bound(top.begin(), top.end(), *sit);
-    //     top.insert(pos, *sit);
-	// 	data.compares++;
-	// 	jakobSomething(top, data);
-    // }
-	// container.swap(top);
+	return stackSortDeq(container, data);
 }
