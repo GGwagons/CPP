@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PmergeMeVec.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggwagons <ggwagons@student.42.fr>          +#+  +:+       +#+        */
+/*   By: miturk <miturk@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 14:03:59 by miturk            #+#    #+#             */
-/*   Updated: 2024/12/17 22:15:25 by ggwagons         ###   ########.fr       */
+/*   Updated: 2024/12/18 19:23:21 by miturk           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,34 +22,38 @@ _Vvec stackSortVec(_Vvec &container, Pmerge &data) {
 			temp[0].push_back(container[0][x]);
 			temp[1].push_back(container[0][x - 1]);
 			for (size_t y = 1; y < container.size(); y++) {
-				temp[y + 1].push_back(container[1][x]);
-				temp[y + 2].push_back(container[1][x - 1]);
-				data.compares++;
-				y++;
+				temp[2 * y].push_back(container[y][x]);
+				temp[2 * y + 1].push_back(container[y][x - 1]);
 			}
 		} 
 		else {
 			temp[0].push_back(container[0][x - 1]);
 			temp[1].push_back(container[0][x]);
 			for (size_t y = 1; y < container.size(); y++) {
-				temp[y + 1].push_back(container[1][x - 1]);
-				temp[y + 2].push_back(container[1][x]);
-				data.compares++;
-				y++;
+				temp[2 * y].push_back(container[y][x - 1]);
+				temp[(2 * y) + 1].push_back(container[y][x]);
 			}
-		data.compares++;
 		}
-		// size_t size = container[0].size();
-		// for (size_t x = 1; x < container.size(); x++) {
-		// 	for (size_t y = size; size != container[x].size(); y++) {
-		// 		temp[(x * 2) + 1].push_back(container[x][y]);
-		// 	}
-		// }
+		data.compares++;
 	}
-	puts("temp");
-	::print(temp);
 	if (container[0].size() % 2 != 0) {
 		temp[1].push_back(container[0].back());
+		for (size_t y = 1; y < container.size(); y++) {
+			temp[(y * 2) + 1].push_back(container[y][container[0].size() - 1]);
+		}
+	}
+	size_t size = container[0].size();
+	for (size_t x = 1; x < container.size(); x++) {
+		for (size_t y = size; y < container[x].size(); y++) {
+			temp[(x * 2) + 1].push_back(container[x][y]);
+		}
+	}
+	::print(temp);
+	if (temp[0].size() == 2 && temp[0][0] > temp[0][1]) {
+		for (size_t i = 0; i < temp.size(); i++) {
+			std::swap(temp[i][0], temp[i][1]);
+		}
+		data.compares++;
 	}
 	return stackSortVec(temp, data);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PmergeMe.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggwagons <ggwagons@student.42.fr>          +#+  +:+       +#+        */
+/*   By: miturk <miturk@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 13:29:08 by miturk            #+#    #+#             */
-/*   Updated: 2024/12/17 20:54:06 by ggwagons         ###   ########.fr       */
+/*   Updated: 2024/12/18 19:21:26 by miturk           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ void add(T &container, int argc, char **argv) {
 // 	::print(container);
 // }
 
-_Ddeq &stackSortDeq(_Ddeq &container, Pmerge &data);
+_Ddeq stackSortDeq(_Ddeq &container, Pmerge &data);
 _Vvec stackSortVec(_Vvec &container, Pmerge &data);
 void timeStamp(timeval &start, timeval &end);
 void Vector(int argc, char **argv, Pmerge &data);

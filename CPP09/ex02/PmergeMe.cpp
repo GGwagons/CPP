@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PmergeMe.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggwagons <ggwagons@student.42.fr>          +#+  +:+       +#+        */
+/*   By: miturk <miturk@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 13:28:50 by miturk            #+#    #+#             */
-/*   Updated: 2024/12/17 20:52:43 by ggwagons         ###   ########.fr       */
+/*   Updated: 2024/12/18 19:24:51 by miturk           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,24 +25,23 @@ void Vector(int argc, char **argv, Pmerge &data) {
 	::add(data.vec, argc, argv);
 	std::cout << "Before: ";
 	::print(data.vec);
-	// _Vvec res;
-	// res.resize((stackSortVec(data.vec, data)).size());
 	data.vec = stackSortVec(data.vec, data);
-	std::cout << "After: ";
+	std::cout << "After: " << std::endl;
 	::print(data.vec);
 	std::cout << "Compares: " << data.compares << std::endl;
 	gettimeofday(&data.end, NULL);
+	std::cout << std::endl;
+	std::cout << std::endl;
 }
 
 void Deque(int argc, char **argv, Pmerge &data) {
 	data.compares = 0;
 	gettimeofday(&data.start, NULL);
 	::add(data.deq, argc, argv);
-	::print(data.vec);
-	_Ddeq res;
-	res = stackSortDeq(data.deq, data);
+	::print(data.deq);
+	data.deq = stackSortDeq(data.deq, data);
 	std::cout << "After: ";
-	::print(res);
+	::print(data.deq);
 	std::cout << "Compares: " << data.compares << std::endl;
 	gettimeofday(&data.end, NULL);
 }
