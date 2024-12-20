@@ -6,7 +6,7 @@
 /*   By: miturk <miturk@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 14:04:14 by miturk            #+#    #+#             */
-/*   Updated: 2024/12/18 19:21:28 by miturk           ###   ########.fr       */
+/*   Updated: 2024/12/20 17:00:52 by miturk           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ _Ddeq stackSortDeq(_Ddeq &container, Pmerge &data) {
 			temp[(x * 2) + 1].push_back(container[x][y]);
 		}
 	}
-	::print(temp);
 	if (temp[0].size() == 2 && temp[0][0] > temp[0][1]) {
 		for (size_t i = 0; i < temp.size(); i++) {
 			std::swap(temp[i][0], temp[i][1]);

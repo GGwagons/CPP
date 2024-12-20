@@ -6,7 +6,7 @@
 /*   By: miturk <miturk@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 13:27:57 by miturk            #+#    #+#             */
-/*   Updated: 2024/12/18 19:21:54 by miturk           ###   ########.fr       */
+/*   Updated: 2024/12/20 18:35:06 by miturk           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,7 @@ int main(int argc, char **argv) {
 	try {
 		Pmerge data;
 		Vector(argc, argv, data);
-		timeStamp(data.start, data.end);
-		Deque (argc, argv, data);
-		timeStamp(data.start, data.end);
-		
+		Deque (argc, argv, data);		
 	} catch (std::exception &e) {
 		std::cerr << e.what() << std::endl;
 		return (1);

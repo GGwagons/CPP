@@ -6,18 +6,17 @@
 #    By: miturk <miturk@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/10 13:28:19 by miturk            #+#    #+#              #
-#    Updated: 2024/12/19 11:03:35 by miturk           ###   ########.fr        #
+#    Updated: 2024/12/20 18:32:27 by miturk           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = PmergeMe
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
-SRCS =	merge.cpp
-		# main.cpp \
-		# PmergeMe.cpp \
-		# PmergeMeVec.cpp \
-		# PmergeMeDeq.cpp
+SRCS =	main.cpp \
+		PmergeMe.cpp \
+		PmergeMeVec.cpp \
+		PmergeMeDeq.cpp		
 
 OBJS = $(SRCS:.cpp=.o)
 

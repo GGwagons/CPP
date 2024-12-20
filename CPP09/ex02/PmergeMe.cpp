@@ -6,7 +6,7 @@
 /*   By: miturk <miturk@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 13:28:50 by miturk            #+#    #+#             */
-/*   Updated: 2024/12/19 17:05:57 by miturk           ###   ########.fr       */
+/*   Updated: 2024/12/20 18:25:18 by miturk           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,30 +20,40 @@ void timeStamp(timeval &start, timeval &end) {
 }
 
 void Vector(int argc, char **argv, Pmerge &data) {
-	data.compares = 0;	
 	gettimeofday(&data.start, NULL);
+	data.compares = 0;
+	data.row = 0;
+	data.x = 0;
+	data.y = 0;
 	::add(data.vec, argc, argv);
 	std::cout << "Before: ";
 	::print(data.vec);
 	data.vec = stackSortVec(data.vec, data);
-	std::cout << "After: " << std::endl;
+	data.vec = mergeInsertion(data.vec, data);
+	std::cout << "After: ";
 	::print(data.vec);
 	std::cout << "Compares: " << data.compares << std::endl;
 	gettimeofday(&data.end, NULL);
-	std::cout << std::endl;
+	timeStamp(data.start, data.end);	
 	std::cout << std::endl;
 }
 
 void Deque(int argc, char **argv, Pmerge &data) {
-	data.compares = 0;
 	gettimeofday(&data.start, NULL);
+	data.compares = 0;
+	data.row = 0;
+	data.x = 0;
+	data.y = 0;
 	::add(data.deq, argc, argv);
+	std::cout << "Before: ";
 	::print(data.deq);
 	data.deq = stackSortDeq(data.deq, data);
+	data.deq = mergeInsertion(data.deq, data);
 	std::cout << "After: ";
 	::print(data.deq);
 	std::cout << "Compares: " << data.compares << std::endl;
 	gettimeofday(&data.end, NULL);
+	timeStamp(data.start, data.end);
 }
 
 // template <typename V, typename D>
