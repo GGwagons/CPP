@@ -6,7 +6,7 @@
 /*   By: miturk <miturk@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 13:28:50 by miturk            #+#    #+#             */
-/*   Updated: 2024/12/20 18:25:18 by miturk           ###   ########.fr       */
+/*   Updated: 2024/12/21 12:26:05 by miturk           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void Vector(int argc, char **argv, Pmerge &data) {
 	data.row = 0;
 	data.x = 0;
 	data.y = 0;
+	data.i = 0;
 	::add(data.vec, argc, argv);
 	std::cout << "Before: ";
 	::print(data.vec);
@@ -44,6 +45,7 @@ void Deque(int argc, char **argv, Pmerge &data) {
 	data.row = 0;
 	data.x = 0;
 	data.y = 0;
+	data.i = 0;
 	::add(data.deq, argc, argv);
 	std::cout << "Before: ";
 	::print(data.deq);

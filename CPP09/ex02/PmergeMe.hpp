@@ -6,7 +6,7 @@
 /*   By: miturk <miturk@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 13:29:08 by miturk            #+#    #+#             */
-/*   Updated: 2024/12/20 18:31:04 by miturk           ###   ########.fr       */
+/*   Updated: 2024/12/21 12:25:48 by miturk           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,16 @@
 #define PMERGEME_HPP
 
 #include <iostream>
-#include <iomanip>
-#include <string>
 #include <vector>
 #include <deque>
 #include <algorithm>
 #include <iterator>
 #include <stdio.h>
 #include <sys/time.h>
-#include <cstdlib>
 #include <exception>
 
 typedef std::deque<std::deque<int> > _Ddeq;
-typedef std::deque<int> _deque;
 typedef std::vector<std::vector<int> > _Vvec;
-typedef std::vector<int> _vector;
 
 typedef struct PmergeMe {
 	_Vvec vec;
@@ -36,6 +31,7 @@ typedef struct PmergeMe {
 	size_t x;
 	size_t y;
 	_Ddeq deq;
+	size_t i;
 	int compares;
 	struct timeval start;
 	struct timeval end;
@@ -87,6 +83,7 @@ T mergeInsertion(T &container, Pmerge &data) {
     if (container.size() <= 1) {return container;}
     T temp(container.size());
 	if (data.row == 0) {
+		puts("how");
 		for (size_t i = 0; data.row < container.size(); data.row += 2) {
 			temp[data.row].push_back(container[data.row + 1][data.x]);
 			for (; i < container[data.row].size(); i++) {
@@ -119,6 +116,7 @@ T mergeInsertion(T &container, Pmerge &data) {
 	}
 	T result;
 	for (size_t row = 0; row < tmp.size(); row += 2) {result.push_back(tmp[row]);}
+	data.row = 0;
 	return mergeInsertion(result, data);
 }
 
