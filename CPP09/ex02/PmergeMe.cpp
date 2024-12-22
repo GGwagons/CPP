@@ -6,7 +6,7 @@
 /*   By: miturk <miturk@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 13:28:50 by miturk            #+#    #+#             */
-/*   Updated: 2024/12/21 12:26:05 by miturk           ###   ########.fr       */
+/*   Updated: 2024/12/22 15:43:38 by miturk           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ void Vector(int argc, char **argv, Pmerge &data) {
 	data.row = 0;
 	data.x = 0;
 	data.y = 0;
-	data.i = 0;
 	::add(data.vec, argc, argv);
 	std::cout << "Before: ";
 	::print(data.vec);
@@ -45,7 +44,6 @@ void Deque(int argc, char **argv, Pmerge &data) {
 	data.row = 0;
 	data.x = 0;
 	data.y = 0;
-	data.i = 0;
 	::add(data.deq, argc, argv);
 	std::cout << "Before: ";
 	::print(data.deq);
@@ -56,6 +54,12 @@ void Deque(int argc, char **argv, Pmerge &data) {
 	std::cout << "Compares: " << data.compares << std::endl;
 	gettimeofday(&data.end, NULL);
 	timeStamp(data.start, data.end);
+}
+
+size_t JacobsThal(size_t num) {
+	size_t sequence;
+	sequence = (pow(2, num) - pow(-1, num)) / 3;
+	return sequence;
 }
 
 // template <typename V, typename D>

@@ -6,7 +6,7 @@
 /*   By: miturk <miturk@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 13:29:08 by miturk            #+#    #+#             */
-/*   Updated: 2024/12/21 12:25:48 by miturk           ###   ########.fr       */
+/*   Updated: 2024/12/22 15:44:55 by miturk           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 #include <stdio.h>
 #include <sys/time.h>
 #include <exception>
+#include <cmath>
 
 typedef std::deque<std::deque<int> > _Ddeq;
 typedef std::vector<std::vector<int> > _Vvec;
@@ -31,7 +32,6 @@ typedef struct PmergeMe {
 	size_t x;
 	size_t y;
 	_Ddeq deq;
-	size_t i;
 	int compares;
 	struct timeval start;
 	struct timeval end;
@@ -80,16 +80,24 @@ void add(T &container, int argc, char **argv) {
 
 template <typename T>
 T mergeInsertion(T &container, Pmerge &data) {
-    if (container.size() <= 1) {return container;}
+	::print(container);
+	puts("");
+	if (container.size() == 1) {
+		// container[0].erase(std::remove(container[0].begin(), container[0].end(), -1), container[0].end());
+		return container;
+	}
     T temp(container.size());
 	if (data.row == 0) {
-		puts("how");
 		for (size_t i = 0; data.row < container.size(); data.row += 2) {
+			for (data.y = 0; container[data.row][data.y] == -1; data.y++) {}
 			temp[data.row].push_back(container[data.row + 1][data.x]);
 			for (; i < container[data.row].size(); i++) {
 				temp[data.row].push_back(container[data.row][i]);
 			}
-			for (data.y = 1; data.y < container[data.row + 1].size(); data.y++) {
+			temp[data.row + 1].push_back(-1);
+			temp[data.row + 1].push_back(-1);
+			for (data.y = 1;data.y < container[data.row + 1].size(); data.y++) {
+				if (container[data.row][data.y] == -1) {continue;}
 				temp[data.row + 1].push_back(container[data.row + 1][data.y]);
 			}
 			i = 0;
@@ -99,21 +107,35 @@ T mergeInsertion(T &container, Pmerge &data) {
 	else {for (size_t i = 0; i < container.size(); i++) {temp[i] = container[i];}}
 	T tmp(temp.size());
     for (size_t row = 0; row < temp.size(); ++row) {tmp[row] = temp[row];}
-	for (size_t row = 1; row < tmp.size(); row += 2) {
-		for (size_t y = 0; y < tmp[row].size(); ++y) {
-			int val = tmp[row][y];
-			typename T::value_type::iterator it = tmp[row - 1].begin();
-			typename T::value_type::iterator ite = tmp[row - 1].end();
-			while (it != ite) {
-			    typename T::value_type::iterator mid = it;
-			    std::advance(mid, std::distance(it, ite) / 2);
-			    data.compares++;
-			    if (*mid < val) {it = mid + 1;}
-				else {ite = mid;}
-			}
-			tmp[row - 1].insert(it, val);
+
+	
+	for (size_t y = 0; y < tmp[row].size(); ++y) {
+		tmp[0][]
+		tmp[1]
+		for (size_t row = 1; row < tmp.size(); row += 2) {
+			tmp[2 * row + 1].;
+			tmp[2 * row + 2].;
 		}
 	}
+	
+	// for (size_t row = 1; row < tmp.size(); row += 2) {
+	// 	for (size_t y = 0; y < tmp[row].size(); ++y) {
+	// 		if (tmp[row][y] == -1) {continue;}
+	// 		int val = tmp[row][y];
+	// 		typename T::value_type::iterator it = tmp[row - 1].begin();
+	// 		typename T::value_type::iterator ite = tmp[row - 1].end();
+	// 		while (it != ite) {
+	// 		    typename T::value_type::iterator mid = it;
+	// 		    std::advance(mid, std::distance(it, ite) / 2);
+	// 		    data.compares++;
+	// 		    if (*mid < val) {it = mid + 1;}
+	// 			else {ite = mid;}
+	// 		}
+	// 		tmp[row - 1].insert(it, val);
+	// 		::print(tmp);
+	// 		puts("");
+	// 	}
+	// }
 	T result;
 	for (size_t row = 0; row < tmp.size(); row += 2) {result.push_back(tmp[row]);}
 	data.row = 0;
@@ -122,6 +144,7 @@ T mergeInsertion(T &container, Pmerge &data) {
 
 _Ddeq stackSortDeq(_Ddeq &container, Pmerge &data);
 _Vvec stackSortVec(_Vvec &container, Pmerge &data);
+size_t JacobsThal(size_t num);
 void timeStamp(timeval &start, timeval &end);
 void Vector(int argc, char **argv, Pmerge &data);
 void Deque(int argc, char **argv, Pmerge &data);
