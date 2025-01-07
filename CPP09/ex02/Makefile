@@ -6,13 +6,13 @@
 #    By: miturk <miturk@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/10 13:28:19 by miturk            #+#    #+#              #
-#    Updated: 2024/12/21 12:22:50 by miturk           ###   ########.fr        #
+#    Updated: 2025/01/07 18:10:46 by miturk           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = PmergeMe
 CXX = c++
-CXXFLAGS = -Wall -Wextra -Werror -std=c++98
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -g
 SRCS =	main.cpp \
 		PmergeMe.cpp \
 		PmergeMeVec.cpp \

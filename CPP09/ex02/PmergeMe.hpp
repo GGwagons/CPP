@@ -6,7 +6,7 @@
 /*   By: miturk <miturk@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 13:29:08 by miturk            #+#    #+#             */
-/*   Updated: 2024/12/22 15:44:55 by miturk           ###   ########.fr       */
+/*   Updated: 2025/01/07 19:53:02 by miturk           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,17 +25,43 @@
 
 typedef std::deque<std::deque<int> > _Ddeq;
 typedef std::vector<std::vector<int> > _Vvec;
+typedef std::vector<int> _vec;
+typedef std::deque<int> _deq;
 
 typedef struct PmergeMe {
-	_Vvec vec;
-	size_t row;
-	size_t x;
-	size_t y;
-	_Ddeq deq;
-	int compares;
-	struct timeval start;
-	struct timeval end;
+    _Vvec vec;
+    size_t row;
+    size_t x;
+    size_t y;
+	size_t i;
+    _Ddeq deq;
+    int compares;
+    struct timeval start;
+    struct timeval end;
 } Pmerge;
+
+_Ddeq stackSortDeq(_Ddeq &container, Pmerge &data);
+_Vvec stackSortVec(_Vvec &container, Pmerge &data);
+size_t JakobsThal(size_t num);
+void timeStamp(timeval &start, timeval &end);
+void Vector(int argc, char **argv, Pmerge &data);
+void Deque(int argc, char **argv, Pmerge &data);
+
+
+template <typename T>
+void print(T &container) {
+    typename T::iterator it;
+    typename T::value_type::iterator inner_it;
+    for (it = container.begin(); it != container.end(); ++it) {
+        for (inner_it = it->begin(); inner_it != it->end(); ++inner_it) {
+            if (inner_it != it->begin()) {
+                std::cout << ", ";
+            }
+            std::cout << *inner_it;
+        }
+        std::cout << std::endl;
+    }
+}
 
 template <typename  T>
 void smallprint(T &container) {
@@ -48,105 +74,95 @@ void smallprint(T &container) {
 }
 
 template <typename T>
-void print(T &container) {
-	typename T::iterator it;
-	typename T::value_type::iterator inner_it;
-	for (it = container.begin(); it != container.end(); ++it) {
-		for (inner_it = it->begin(); inner_it != it->end(); ++inner_it) {
-			if (inner_it != it->begin()) {
-				std::cout << ", ";
-			}
-			std::cout << *inner_it;
-		}
-		std::cout << std::endl;
-	}
+void add(T &container, int argc, char **argv) {
+    std::string str;
+    typename T::value_type innerContainer;
+    for (int i = 1; i < argc; i++) {
+        str = argv[i];
+        int num = std::atoi(str.c_str());
+        if (num < 0) {
+            std::cerr << "Error";
+            throw std::runtime_error("");
+        }
+        innerContainer.push_back(num);
+    }
+    container.push_back(innerContainer);
 }
 
 template <typename T>
-void add(T &container, int argc, char **argv) {
-	std::string str;
-	typename T::value_type innerContainer;
-	for (int i = 1; i < argc; i++) {
-		str = argv[i];
-		int num = std::atoi(str.c_str());
-		if (num < 0) {
-			std::cerr << "Error";
-			throw std::runtime_error("");
-		}
-		innerContainer.push_back(num);
-	}
-	container.push_back(innerContainer);
+typename T::value_type generateJakobsThalSequence(size_t size) {
+    typename T::value_type sequence;
+    for (size_t i = 0; JakobsThal(i) < size; ++i) {
+        sequence.push_back(JakobsThal(i));
+    }
+    return sequence;
+}
+
+template <typename T>
+int binaryInsert(T *container, int val, Pmerge &data, typename T::iterator ite) {
+    typename T::iterator it = container->begin();
+		std::cout << *it << " " << *ite << " val: " << val << std::endl;
+    while (it < ite) {
+		typename T::iterator mid = it;	
+        data.compares++;
+       std::advance(mid, std::distance(it, ite) / 2);
+        if (val < *mid) {ite = mid;}
+		else {it = mid + 1;}
+    }
+	container->insert(it, val);
+	return (it - container->begin());
 }
 
 template <typename T>
 T mergeInsertion(T &container, Pmerge &data) {
+	puts("BEGIN");
 	::print(container);
 	puts("");
-	if (container.size() == 1) {
-		// container[0].erase(std::remove(container[0].begin(), container[0].end(), -1), container[0].end());
-		return container;
+	if (container.size() == 1) {return container;}
+	typename T::value_type jakobsThalSeq = generateJakobsThalSequence<T>(container.size());
+	for (size_t row = 1; row < container.size(); row += 2) {
+		container[row - 1].insert(container[row - 1].begin(), container[row][0]);
+		container[row][0] = -1;
+		container[row].insert(container[row].begin(), -1);
 	}
-    T temp(container.size());
-	if (data.row == 0) {
-		for (size_t i = 0; data.row < container.size(); data.row += 2) {
-			for (data.y = 0; container[data.row][data.y] == -1; data.y++) {}
-			temp[data.row].push_back(container[data.row + 1][data.x]);
-			for (; i < container[data.row].size(); i++) {
-				temp[data.row].push_back(container[data.row][i]);
-			}
-			temp[data.row + 1].push_back(-1);
-			temp[data.row + 1].push_back(-1);
-			for (data.y = 1;data.y < container[data.row + 1].size(); data.y++) {
-				if (container[data.row][data.y] == -1) {continue;}
-				temp[data.row + 1].push_back(container[data.row + 1][data.y]);
-			}
-			i = 0;
-		}
-		return mergeInsertion(temp, data);
-	}
-	else {for (size_t i = 0; i < container.size(); i++) {temp[i] = container[i];}}
-	T tmp(temp.size());
-    for (size_t row = 0; row < temp.size(); ++row) {tmp[row] = temp[row];}
+	puts("After first push");
+	::print(container);
+	puts("");
+	size_t j;
+	for (size_t i = 2; pow(2, i - 1) < container[1].size(); i++) {
+		if (pow(2, i) >= container[1].size()) {j = container[1].size() - 1;}
+		else {j = pow(2, i) - 1;}
 
-	
-	for (size_t y = 0; y < tmp[row].size(); ++y) {
-		tmp[0][]
-		tmp[1]
-		for (size_t row = 1; row < tmp.size(); row += 2) {
-			tmp[2 * row + 1].;
-			tmp[2 * row + 2].;
+			std::cout << "pow(2, i) " << pow(2, i)<< "\t\tcontainer[1].size() " << container[1].size() << std::endl;
+			size_t jj = j + 1;
+		for (; j > 0; j--) {
+			std::cout << "J--> " << j << std::endl;
+			if (container[1][j] != -1) {
+				typename T::value_type::iterator end;
+				if (j < container[0].size()) {end = container[0].begin() + j;}
+				else {end = container[0].end() - 1;}
+				int pos = binaryInsert(&container[0], container[1][j], data, end);
+				container[1][j] = -1;
+				std::cout << "POS: " << pos << std::endl;
+				container[1].insert(container[1].begin() + pos, -1);
+				
+				for (size_t x = 3; x < container.size(); x += 2) {
+					container[x - 1].insert(container[x - 1].begin() + pos, container[x][j]);
+					container[x][j] = -1;
+					container[x].insert(container[x].begin() + pos, -1);
+				}
+				j = jj;
+			}
 		}
 	}
-	
-	// for (size_t row = 1; row < tmp.size(); row += 2) {
-	// 	for (size_t y = 0; y < tmp[row].size(); ++y) {
-	// 		if (tmp[row][y] == -1) {continue;}
-	// 		int val = tmp[row][y];
-	// 		typename T::value_type::iterator it = tmp[row - 1].begin();
-	// 		typename T::value_type::iterator ite = tmp[row - 1].end();
-	// 		while (it != ite) {
-	// 		    typename T::value_type::iterator mid = it;
-	// 		    std::advance(mid, std::distance(it, ite) / 2);
-	// 		    data.compares++;
-	// 		    if (*mid < val) {it = mid + 1;}
-	// 			else {ite = mid;}
-	// 		}
-	// 		tmp[row - 1].insert(it, val);
-	// 		::print(tmp);
-	// 		puts("");
-	// 	}
-	// }
-	T result;
-	for (size_t row = 0; row < tmp.size(); row += 2) {result.push_back(tmp[row]);}
-	data.row = 0;
-	return mergeInsertion(result, data);
+	puts("END");
+	::print(container);
+	puts("");
+	T tmp;
+	for (size_t x = 0; x < container.size(); x += 2) {
+		tmp.push_back(container[x]);
+	}
+	return mergeInsertion(tmp, data);
 }
-
-_Ddeq stackSortDeq(_Ddeq &container, Pmerge &data);
-_Vvec stackSortVec(_Vvec &container, Pmerge &data);
-size_t JacobsThal(size_t num);
-void timeStamp(timeval &start, timeval &end);
-void Vector(int argc, char **argv, Pmerge &data);
-void Deque(int argc, char **argv, Pmerge &data);
 
 #endif
