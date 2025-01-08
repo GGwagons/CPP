@@ -6,7 +6,7 @@
 /*   By: miturk <miturk@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 14:04:14 by miturk            #+#    #+#             */
-/*   Updated: 2024/12/20 17:00:52 by miturk           ###   ########.fr       */
+/*   Updated: 2025/01/08 16:10:40 by miturk           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,12 @@
 
 _Ddeq stackSortDeq(_Ddeq &container, Pmerge &data) {
 	if (container[0].size() < 3) {
+		data.compares++;
+		if (container[0].size() == 2 && container[0][0] > container[0][1]) {
+			for (size_t i = 0; i < container.size(); i++) {
+				std::swap(container[i][0], container[i][1]);
+			}
+		}
 		return container;
 	}
 	_Ddeq temp(container.size() * 2);
@@ -47,12 +53,6 @@ _Ddeq stackSortDeq(_Ddeq &container, Pmerge &data) {
 		for (size_t y = size; y < container[x].size(); y++) {
 			temp[(x * 2) + 1].push_back(container[x][y]);
 		}
-	}
-	if (temp[0].size() == 2 && temp[0][0] > temp[0][1]) {
-		for (size_t i = 0; i < temp.size(); i++) {
-			std::swap(temp[i][0], temp[i][1]);
-		}
-		data.compares++;
 	}
 	return stackSortDeq(temp, data);
 }

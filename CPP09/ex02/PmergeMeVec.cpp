@@ -6,7 +6,7 @@
 /*   By: miturk <miturk@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 14:03:59 by miturk            #+#    #+#             */
-/*   Updated: 2025/01/07 18:24:36 by miturk           ###   ########.fr       */
+/*   Updated: 2025/01/08 16:10:26 by miturk           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,5 @@ _Vvec stackSortVec(_Vvec &container, Pmerge &data) {
 			temp[(x * 2) + 1].push_back(container[x][y]);
 		}
 	}
-	
 	return stackSortVec(temp, data);
 }
