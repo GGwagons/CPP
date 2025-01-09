@@ -6,18 +6,20 @@
 /*   By: miturk <miturk@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 14:03:59 by miturk            #+#    #+#             */
-/*   Updated: 2025/01/08 16:10:26 by miturk           ###   ########.fr       */
+/*   Updated: 2025/01/09 13:49:58 by miturk           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PmergeMe.hpp"
 
 _Vvec stackSortVec(_Vvec &container, Pmerge &data) {
-	if (container[0].size() < 3) {
-		data.compares++;
-		if (container[0].size() == 2 && container[0][0] > container[0][1]) {
-			for (size_t i = 0; i < container.size(); i++) {
-				std::swap(container[i][0], container[i][1]);
+	if (container[0].size() <= 2) {
+		if (container[0].size() == 2) {
+			data.compares++;
+			if (container[0][0] > container[0][1]) {
+				for (size_t i = 0; i < container.size(); i++) {
+					std::swap(container[i][0], container[i][1]);
+				}
 			}
 		}
 		return container;

@@ -6,7 +6,7 @@
 /*   By: miturk <miturk@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 13:27:57 by miturk            #+#    #+#             */
-/*   Updated: 2025/01/08 16:55:40 by miturk           ###   ########.fr       */
+/*   Updated: 2025/01/09 16:48:14 by miturk           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,9 @@ int main(int argc, char **argv) {
 			Deque (argc, argv, data);
 			Vector(argc, argv, data);
 		}
-	} catch (std::exception &e) {
+		std::cout << "Containers are Sorted" << std::endl;
+	}
+	catch (std::exception &e) {
 		std::cerr << e.what() << std::endl;
 		return (1);
 	}

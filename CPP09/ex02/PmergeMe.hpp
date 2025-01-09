@@ -6,7 +6,7 @@
 /*   By: miturk <miturk@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 13:29:08 by miturk            #+#    #+#             */
-/*   Updated: 2025/01/08 16:57:45 by miturk           ###   ########.fr       */
+/*   Updated: 2025/01/09 16:48:07 by miturk           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,21 +18,20 @@
 #include <deque>
 #include <algorithm>
 #include <iterator>
-#include <stdio.h>
 #include <sys/time.h>
 #include <exception>
 #include <cmath>
+#include <iomanip>
 
 typedef std::deque<std::deque<int> > _Ddeq;
 typedef std::vector<std::vector<int> > _Vvec;
-typedef std::vector<int> _vec;
-typedef std::deque<int> _deq;
 
 typedef struct PmergeMe {
     _Vvec vec;
     _Ddeq deq;
     int compares;
 	int what;
+	size_t ogSize;
     struct timeval start;
     struct timeval end;
 } Pmerge;
@@ -60,14 +59,21 @@ void print(T &container) {
     }
 }
 
-template <typename  T>
-void smallprint(T &container) {
+template <typename T>
+int isSorted(T &container, Pmerge &data) {
 	typename T::iterator it = container.begin();
 	typename T::iterator ite = container.end();
-	for (; it != ite; it++) {
-		std::cout << *it << " ";
+	for (; it < ite; *it++) {
+		if (it > it + 1) {
+			std::cerr << "Error: List not Sorted";
+            throw std::runtime_error("");
+		}
 	}
-	std::cout << std::endl;
+	if (data.ogSize != container.size()) {
+		std::cerr << "Error: List not Complete";
+		throw std::runtime_error("");
+	}
+	return (0);
 }
 
 template <typename T>
@@ -103,7 +109,10 @@ int binaryInsert(T *container, int val, Pmerge &data, typename T::iterator ite) 
 
 template <typename T>
 T mergeInsertion(T &container, Pmerge &data) {
-	if (container.size() == 1) {return container;}
+	if (container.size() == 1) {
+		isSorted(container[0], data);
+		return container;
+	}
 	for (size_t row = 1; row < container.size(); row += 2) {
 		container[row - 1].insert(container[row - 1].begin(), container[row][0]);
 		container[row][0] = -1;
