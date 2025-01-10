@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   BitcoinExchange.hpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggwagons <ggwagons@student.42.fr>          +#+  +:+       +#+        */
+/*   By: miturk <miturk@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/30 14:56:17 by ggwagons          #+#    #+#             */
-/*   Updated: 2024/12/04 22:40:40 by ggwagons         ###   ########.fr       */
+/*   Updated: 2025/01/10 16:50:50 by miturk           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,15 +38,6 @@ typedef struct s_Split {
     float		_fvalue;
 } Split;
 
-template <typename T>
-class BitcoinExchange {
-	private:
-		BitcoinExchange();
-		BitcoinExchange(const BitcoinExchange &copy);
-		BitcoinExchange &operator=(const BitcoinExchange &copy);
-		~BitcoinExchange();
-	public:
-};
 bool dayWalker(Split &s);
 bool getTime(Split &s);
 bool howMuch(Split &s, std::string &value);
@@ -160,13 +151,7 @@ void inputValue(const T &input, std::map<std::string, float> &csv, Split &s) {
         std::istringstream ss(line.c_str()); std::string date; std::string value;
         if (std::getline(ss, date, '|') &&  std::getline(ss, value)) {
 			date.erase(std::remove(date.begin(), date.end(), ' '), date.end());
-            if (checkDate(date, s) == true) {
-				if (getTime(s) == false) {
-					std::cerr << "Error: Stop It Future boi => " << date << std::endl;
-					continue;
-				}
-			}
-			else {
+			if (checkDate(date, s) == false) {
 				std::cerr << "Error: Invalid Date format => " << date << std::endl;
 				continue;
 			}

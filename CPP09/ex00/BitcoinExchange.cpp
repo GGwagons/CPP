@@ -3,29 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   BitcoinExchange.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggwagons <ggwagons@student.42.fr>          +#+  +:+       +#+        */
+/*   By: miturk <miturk@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/30 14:56:01 by ggwagons          #+#    #+#             */
-/*   Updated: 2024/12/04 22:16:56 by ggwagons         ###   ########.fr       */
+/*   Updated: 2025/01/10 16:46:07 by miturk           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "BitcoinExchange.hpp"
-
-template <typename T>
-BitcoinExchange<T>::BitcoinExchange() {}
-
-template <typename T>
-BitcoinExchange<T>::BitcoinExchange(const BitcoinExchange &copy) {*this = copy;}
-
-template <typename T>
-BitcoinExchange<T> &BitcoinExchange<T>::operator=(const BitcoinExchange<T> &copy) {
-	if (this != &copy) {}
-	return *this;
-}
-
-template <typename T>
-BitcoinExchange<T>::~BitcoinExchange() {}
 
 bool getTime(Split &s) {
 	std::time_t now = std::time(NULL);
@@ -36,13 +21,16 @@ bool getTime(Split &s) {
 	int Year = std::atoi(buffer.substr(0, 4).c_str());
 	int Month = std::atoi(buffer.substr(5, 2).c_str());
 	int Day = std::atoi(buffer.substr(8, 2).c_str());
-	if (Year >= s._year) {
-		if (Month >= s._month) {
-			if (Day >= s._day) {return true;}
-		}
-	}
-	else {return false;}
-	return true;
+	if (s._year > Year) return false;
+
+    // Compare months (if years are equal)
+    if (s._year == Year && s._month > Month) return false;
+
+    // Compare days (if years and months are equal)
+    if (s._year == Year && s._month == Month && s._day > Day) return false;
+
+    // If all checks pass, the date is valid
+    return true;
 }
 
 bool dayWalker(Split &s) {
